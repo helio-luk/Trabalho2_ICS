@@ -12,7 +12,7 @@ compilar: clear
 	$(COMPILADOR) -d $(DIR_BINARIO) -cp $(DIR_EXTERN_JAR) -sourcepath $(DIR_FONTES):. $(DIR_FONTES)*.java
 	
 executar: compilar
-	#clear	
+	clear	
 	$(EXECUTADOR) -cp $(DIR_BINARIO) -jar $(DIR_EXTERN_JAR) $(ARQ_PRINCIPAL)
 	
 documentar: compilar
