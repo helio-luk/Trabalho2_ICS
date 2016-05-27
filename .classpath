@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/helio/workspace/TRABICS/Trabalho2_ICS/sintese.jar"/>
+	<classpathentry kind="lib" path="/home/rodrigo/Dropbox/UnB/UnB 2016.1/ICS/Trabalhos/sintese.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
