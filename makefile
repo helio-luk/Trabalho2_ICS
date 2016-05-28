@@ -18,10 +18,11 @@ executar: compilar
 	
 documentar: compilar
 	clear
-	$(DOCUMENTADOR) -d $(DIR_DOCUMENTACAO) -sourcepath $(DIR_FONTES):. $(DIR_FONTES)*/*.java $(TAGS_DOCUMENTACAO)
+	$(DOCUMENTADOR) -d $(DIR_DOCUMENTACAO) -sourcepath $(DIR_FONTES):. $(DIR_FONTES)principal/*.java -docencoding UTF-8 $(TAGS_DOCUMENTACAO)
 
 clear:
 	rm -rf $(DIR_BINARIO)/*
+	rm -rf $(DIR_DOCUMENTACAO)/
 	clear
 
 
