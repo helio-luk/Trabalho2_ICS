@@ -16,18 +16,26 @@ import sintese.Curva;
  */
 
 public class Principal{
-	static Curva funcao1 = null;
+	/**
+	 * Funcao comum a todos os instrumentos, um trapezio
+	 */
+	public static Curva funcao1 = null;
+	/**
+	 * Manipulacao do primeiro instrumento
+	 */
+	public Instrumento1 inst1 = null;
 	
    /**
     * Inicia a execucao de todo o programa
     * @param args Parametros passados via linha de comando
     */
-	public static void main(String args[]){
-		System.out.println("testando som rodrigo!!\n");
-		new Principal();	   
+	public static void main (String args[]){
+		System.out.println ("testando som rodrigo!!\n");
+		new Principal();
+		System.gc();
 	}
 
-	public Principal() {
+	public Principal (){
 		/*	Criando curva com resolução de 720 pontos,
 		 *	que servirá para todos os instrumentos */
 		funcao1 = new Curva (720);
@@ -35,5 +43,7 @@ public class Principal{
 		funcao1.addPonto (20f,	300f);
 		funcao1.addPonto (680f,	300f);
 		funcao1.addPonto (720f,	0f);
+		
+		inst1 = new Instrumento1();
    }
 }

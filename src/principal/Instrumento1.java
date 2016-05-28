@@ -2,9 +2,10 @@
 package principal;
 
 /*	Importando Classes necessárias */
-import sintese.Alea;
 import sintese.Envoltoria;
 import sintese.Oscilador;
+import sintese.Ruido;
+import sintese.Som;
 
 /** 
  * Constroi o primeiro instrumento especificado na 
@@ -16,21 +17,39 @@ import sintese.Oscilador;
  * @since	26/05/2016
  */
 
-public class Instrumento1 {
-	Envoltoria envoltoria1;
-	Alea ruido1;
-	Oscilador oscilador1;
+public class Instrumento1{
+	/**
+	 * Possibilita o manuseio da envoltoria para a amplitude
+	 */
+	Envoltoria envoltoria1 = null;
+	/**
+	 * Possibilita o manuseio do ruido associado a amplitude
+	 */
+	Ruido ruido1 = null;
+	/**
+	 * Possibilita o manuseio do instrumento formado
+	 */
+	Oscilador oscilador1 = null;
 	
 	/**
 	 *	Construcao do instrumento de maneira default
 	 */
 	public Instrumento1(){
+		envoltoria1 = new Envoltoria();
+		
 		/*	Configurando a curva da envoltória como sendo a
 		 *	recém-criada */
-		envoltoria1.setCURVA(Principal.funcao1);
+		envoltoria1.setCURVA (Principal.funcao1);
 		
-		ruido1 = new Alea(envoltoria1);
+		envoltoria1.setGanho(80f);
 		
-		oscilador1 = new Oscilador(ruido1);		
+		ruido1 = new Ruido (envoltoria1);
+		ruido1.setFrequencia(440f);
+		
+		oscilador1 = new Oscilador (ruido1);
+		
+		Som teste = new Som (oscilador1, 2f);
+		teste.visualiza();
+		
 	}
 }
