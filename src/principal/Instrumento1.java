@@ -20,67 +20,35 @@ import sintese.Ruido;
 public class Instrumento1 extends Dispositivo{
 	/**
 	 * Possibilita o manuseio da envoltoria para a amplitude
-	 */
-	Envoltoria envoltoria = null;
-	/**	
 	 * Possibilita o manuseio do ruido associado a amplitude
-	 */
-	Ruido ruido = null;
-	/**	
 	 * Possibilita o manuseio do instrumento formado
-	 */
-	Oscilador oscilador = null;
-	/**
 	 * Controle do canal estereofonico que recebera as amostras
+	 * Controle da estereofonia da saida do instrumento, para o  lado esquerdo
+	 * Controle da estereofonia da saida do instrumento, para o lado direito
+	 * Controle do angulo da fase do instrumento
+	 * Controle da multiplicação sobre a amplitude do sinal do instrumento
+	 * Controle da largura da banda de frequência do ruído
+	 * Construcao do instrumento de maneira default
 	 */
-    private boolean    canal;
-    /**
-     * Controle da estereofonia da saida do instrumento, para o 
-     * lado esquerdo
-     */
-    private float      lambda;
-    /**
-     * Controle da estereofonia da saida do instrumento, para o 
-     * lado direito
-     */
-    private float      lambdaComplementar;
-    /**
-     * Controle do angulo da fase do instrumento
-     */
-    private float      fase;
-    /**
-     * Controle da multiplicação sobre a amplitude do sinal
-     * do instrumento
-     */
-    private float      ganho = 1;
-    /**
-     * Controle da largura da banda de frequência do ruído
-     */
-    private float      fatorCorte;
+	Envoltoria envoltoria = null;	
+	Ruido ruido = null;	
+	Oscilador oscilador = null;	
 	
-    /**
-	 *	Construcao do instrumento de maneira default
-	 */
+    private boolean canal;   
+    private float lambda;   
+    private float lambdaComplementar;    
+    private float fase;    
+    private float ganho = 1;    
+    private float fatorCorte;
+	
+    
 	public Instrumento1 (){
-		/*	Criação da envoltória como vazia */
-		this.envoltoria = new Envoltoria();
-		
-		/*	Criação do ruído como vazio */
-		this.ruido = new Ruido ();
-		
-		/*	Criação do oscilador como vazio */
-		this.oscilador = new Oscilador ();
-		
-		/*	Inicializa o oscilador na primeira batida do relógio */
-		this.setRelogio (0);
-		
-		/*	Configuração do fator de corte default */
-		this.fatorCorte = 1;
-		
-		/*	Configuração do lambda default */
-		this.setLambda (0.5f);
-		
-		/*	Configuração da fase default */
+		this.envoltoria = new Envoltoria();		
+		this.ruido = new Ruido();	
+		this.oscilador = new Oscilador();		
+		this.setRelogio(0);	
+		this.fatorCorte = 1;		
+		this.setLambda (0.5f);		
 		this.setFase (0f);
 	}
 
@@ -89,10 +57,7 @@ public class Instrumento1 extends Dispositivo{
 	 *	@param fc Fator de corte para a banda especificada
 	 */
 	public Instrumento1 (float fc){
-		/*	Construção como vazio */
 		this();
-		
-		/*	Atribuição do fator de corte */
 		this.fatorCorte = fc;
 	}
 	
@@ -103,23 +68,17 @@ public class Instrumento1 extends Dispositivo{
 	 *	@param envoltoria Envoltoria caracteristica do ruido
 	 *	@param fc Fator de corte para a banda especificada
 	 */
-	public Instrumento1 (Ruido ruido, Envoltoria envoltoria, float fc){
-		/*	Constroi com o fator de corte */
-		this(fc);
-		
-		/*	Atribuição do ruido */
-		this.ruido = ruido;
-		
-		/*	Atribuição da envoltoria */
+	public Instrumento1 (Ruido ruido, Envoltoria envoltoria, float fc){		
+		this(fc);		
+		this.ruido = ruido;	
 		this.envoltoria = envoltoria;
 	}
-
 
 	/**
 	 * Aciona o relogio de modo a atualizar a saida do dispositivo.
 	 */
-	public void relogio (){
-		this.oscilador.relogio ();
+	public void relogio(){
+		this.oscilador.relogio();
 	}
 	
 	/**
@@ -127,22 +86,12 @@ public class Instrumento1 extends Dispositivo{
 	 *	a n-esima chamada do relogio().
 	 *	@param n N-esima posicao do relogio a ser considerada
 	 */
-	public void setRelogio (long n){
-		/*	Configurando o relógio da envoltória */
-		this.envoltoria.setRelogio (n);
-		
-		/*	Configurando o relogio do ruído */
-		this.ruido.setRelogio (n);
-		
-		/*	Configurando o relógio do oscilador */
-		this.oscilador.setRelogio (n);
-		
-		/*	Configurando a saida */
-		this.saida = this.oscilador.getSaida()*((this.canal) ? this.lambdaComplementar : this.lambda);
-		
-		/*	Revertendo troca de canal */
-		this.canal = !this.canal;
-		
+	public void setRelogio (long n){		
+		this.envoltoria.setRelogio(n);		
+		this.ruido.setRelogio (n);		
+		this.oscilador.setRelogio (n);		
+		this.saida = this.oscilador.getSaida()*((this.canal) ? this.lambdaComplementar : this.lambda);		
+		this.canal = !this.canal;	
 	    this.reset();
 	}
 
@@ -150,13 +99,9 @@ public class Instrumento1 extends Dispositivo{
 	 * Retorna a saida corrente deste instrumento
 	 * @return Valor da saida corrigida pelo ganho
 	 */
-	public float getSaida (){         
-		/*	Configurando a saída */
-		this.saida = this.oscilador.getSaida()*((this.canal) ? this.lambdaComplementar : this.lambda);
-
-		/* Troca do canal */
+	public float getSaida (){		
+		this.saida = this.oscilador.getSaida()*((this.canal) ? this.lambdaComplementar : this.lambda);		
 		this.canal = !this.canal;
-
 		return (this.ganho * this.saida);
     }
 
@@ -165,31 +110,19 @@ public class Instrumento1 extends Dispositivo{
 	 */
     public void reset (){    	
     	this.envoltoria.setCURVA(Principal.funcao1);
-        /*	Igualando a duração da envoltória com a do instrumento */
-    	this.envoltoria.setDuracao (this.duracao);
-    	/*	Resetando a envoltória */
+    	this.envoltoria.setDuracao (this.duracao);    	
         this.envoltoria.reset();
-
-        /*	Configurando a envoltória de amplitude do ruido*/ 
-        this.ruido.setDispositivoAmplitude (this.envoltoria);
-        /*	Configurando a frequência do ruido */
-        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);
-        /*	Configurando a fase do ruido */
-        this.ruido.setFase (this.fase);
-        /*	Igualando a duração do ruido com a do instrumento */
-        this.ruido.setDuracao (this.duracao);
-        /*	Resetando o ruido */
+        
+        this.ruido.setDispositivoAmplitude (this.envoltoria);        
+        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFase (this.fase);        
+        this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();
-                
-        /*	Configurando a envoltoria de amplitude do oscilador */
-        this.oscilador.setDispositivoAmplitude (this.ruido);
-        /*	Configurando a frequência do oscilador */
-        this.oscilador.setFrequencia ((float) this.frequencia);
-        /*	Configurando a fase do oscilador */
-        this.oscilador.setFase (this.fase);
-        /*	Igualando a duração do oscilador com a do instrumento */
-        this.oscilador.setDuracao (this.duracao);
-        /*	Resetando o oscilador */
+        
+        this.oscilador.setDispositivoAmplitude (this.ruido);        
+        this.oscilador.setFrequencia ((float) this.frequencia);        
+        this.oscilador.setFase (this.fase);        
+        this.oscilador.setDuracao (this.duracao);        
         this.oscilador.reset();                
     }
 
@@ -197,8 +130,7 @@ public class Instrumento1 extends Dispositivo{
      * Atribui valor ao ganho
      * @param ganho	Valor a ser atribuido ao ganho
      */
-    public void setGanho (float ganho){
-    	/*	Atribuição em si */
+    public void setGanho (float ganho){    	
     	this.ganho = ganho;
     }
     
@@ -206,12 +138,8 @@ public class Instrumento1 extends Dispositivo{
      * Atribui valor a duracao, em segundos
      * @param duracao Valor a ser atribuido a duracao
      */
-    public void setDuracao (float duracao){
-    	/*	Configurando a duração do instrumento */
-    	this.duracao = duracao;
-    	
-    	/*	Resetando todo o instrumento, considerando esta nova
-    	 *	duração */
+    public void setDuracao (float duracao){    	
+    	this.duracao = duracao;    
     	this.reset();    	
     }
     
@@ -219,12 +147,8 @@ public class Instrumento1 extends Dispositivo{
      * Atribui valor a frequencia, em hertz
      * @param frequencia Valor a ser atribuido a frequencia
      */
-    public void setFrequencia(float frequencia){
-    	/*	Configurando a frequencia do instrumento */
-    	this.frequencia = frequencia;
-    	
-    	/*	Resetando todo o instrumento, considerando esta nova
-    	 *	frequencia */
+    public void setFrequencia(float frequencia){    	
+    	this.frequencia = frequencia;   	
     	this.reset();
     }
     
@@ -232,15 +156,9 @@ public class Instrumento1 extends Dispositivo{
      * Atribui um valor de estereofonia para a saida do instrumento
      * @param lambda Porcentagem da saida esquerda (entre 0 e 1)
      */
-    public void setLambda(double lambda){
-    	/*	Configurando o lambda, lado esquerdo */
-    	this.lambda = (float) lambda;
-    	
-    	/*	Configurando o lado direito */
-    	this.lambdaComplementar = 1 - this.lambda;
-      
-    	/*	Resetando todo o instrumento, considerando este novo
-    	 *	lambda */
+    public void setLambda(double lambda){    	
+    	this.lambda = (float) lambda;    	
+    	this.lambdaComplementar = 1 - this.lambda;    	
     	this.reset();
     }
     
@@ -248,12 +166,8 @@ public class Instrumento1 extends Dispositivo{
      * Atribui um valor ao gerador de envoltoria do instrumento
      * @param envoltoria Gerador de envoltória do instrumento
      */
-    public void setEnvoltoria (Envoltoria envoltoria){
-    	/*	Configuração da envoltória */
-    	this.envoltoria = envoltoria;
-    	
-    	/*	Resetando todo o instrumento, considerando esta nova
-    	 *	envoltoria */
+    public void setEnvoltoria (Envoltoria envoltoria){   	
+    	this.envoltoria = envoltoria;   	
     	this.reset();
     }
     
@@ -262,11 +176,7 @@ public class Instrumento1 extends Dispositivo{
      * @param fase Valor a ser atribuido a fase
      */
     public void setFase(float fase){
-    	/*	Configuração da fase */
-    	this.fase = fase;
-    	
-    	/*	Resetando todo o instrumento, considerando esta nova
-    	 *	fase */
+    	this.fase = fase;   
     	this.reset();
     }
 }

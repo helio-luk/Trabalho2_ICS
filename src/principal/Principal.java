@@ -26,7 +26,8 @@ public class Principal{
 	/**
 	 * Funcao comum a todos os instrumentos, um trapezio
 	 */
-	public static Curva funcao1 = null;	
+	public static Curva funcao1 = null;
+	
 	
 	/**
      * Inicia a execucao de todo o programa
@@ -34,9 +35,7 @@ public class Principal{
      */
 	public static void main (String args[]){
 		System.out.println ("testando som rodrigo!!\n");
-		new Principal();
-		
-		
+		new Principal();		
 		System.gc();
 	}
 	
@@ -49,7 +48,7 @@ public class Principal{
    }
 
 	private void testeInstrumento1() {
-		Instrumento1 inst  = new Instrumento1(1);        //---instrumento atonal
+		Instrumento2 inst  = new Instrumento2(1);        //---instrumento atonal
 		//inst  = new Instrumento1(0.2f);     	 //---quase tonal
 	    //inst  = new Instrumento1(0.065f);   //---atonal
 	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
@@ -129,4 +128,6 @@ public class Principal{
 		funcao1.addPonto (240f, 300f);
 		funcao1.addPonto (720f,	0f);
 	}
+	
+	
 }
