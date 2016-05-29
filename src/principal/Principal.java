@@ -32,6 +32,8 @@ public class Principal{
 	public static void main (String args[]){
 		System.out.println ("testando som rodrigo!!\n");
 		new Principal();
+		
+		
 		System.gc();
 	}
 	
@@ -39,7 +41,8 @@ public class Principal{
 		/*	Construção da F1 */
 		constroiFuncao1 ();
 		
-		testeInstrumento1();  
+		//testeInstrumento1();  
+		tocaFrozen ();
    }
 
 	private void testeInstrumento1() {
@@ -63,7 +66,7 @@ public class Principal{
 	    inst.setEnvoltoria(env);
 	    inst.setLambda(0.5f);
 	    inst.setFase(0f);
-	    inst.setGanho(10);     
+	    inst.setGanho(103);     
 	     
 	        
 	    Melodia m2 = Tema.tema_aa_fuga1();
@@ -76,6 +79,44 @@ public class Principal{
 	    m2.setAndamento(0.95f);
 
 	    Som som = m2.getSom(inst);
+	    som.visualiza();
+
+	    try{ System.in.read();
+	         System.exit(0);
+	    }
+	    catch(Exception e){};
+	}
+	
+	private void tocaFrozen (){
+		Instrumento1 inst;
+		
+		//inst  = new Instrumento1(1);        //---instrumento atonal
+		//inst  = new Instrumento1(0.2f);     	 //---quase tonal
+	    //inst  = new Instrumento1(0.065f);   //---atonal
+	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
+	    //inst  = new Instrumento1(0.0001f);  //---tonal: formante estreita
+	    inst  = new Instrumento1(0.00001f); //---tonal: som puro
+			
+		Envoltoria env   = new Envoltoria(); 
+	    Curva curva = new Curva(720);     
+
+	    curva.addPonto(  0f,   0f);
+	    curva.addPonto( 30f, 400f);
+	    curva.addPonto(240f, 300f);
+	    curva.addPonto(720f,   0f);
+
+	    env.setCURVA(curva);
+	           
+	    inst.setEnvoltoria(env);
+	    inst.setLambda(0.5f);
+	    inst.setFase(0f);
+	    inst.setGanho(103);  
+		
+	    Melodia mel = Melodias.frozen(); 
+	    		
+	    mel.setAndamento(.5f);
+	    
+		Som som = mel.getSom(inst);
 	    som.visualiza();
 
 	    try{ System.in.read();
