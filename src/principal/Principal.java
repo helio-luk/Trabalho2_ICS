@@ -1,9 +1,12 @@
 /*	Pacote ao qual pertence */
 package principal;
 
+import sintese.BancoDeInstrumentos;
+
 /*	Importando Classes necessárias */
 
 import sintese.Curva;
+import sintese.Dispositivo;
 import sintese.Envoltoria;
 import sintese.Melodia;
 import sintese.Som;
@@ -52,23 +55,10 @@ public class Principal{
 	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
 	    //inst  = new Instrumento1(0.0001f);  //---tonal: formante estreita
 	    //inst  = new Instrumento1(0.00001f); //---tonal: som puro
-	    
-	    Envoltoria env   = new Envoltoria(); 
-	    Curva curva = new Curva(720);     
 
-	    curva.addPonto(  0f,   0f);
-	    curva.addPonto( 30f, 400f);
-	    curva.addPonto(240f, 300f);
-	    curva.addPonto(720f,   0f);
-
-	    env.setCURVA(curva);
-	           
-	    inst.setEnvoltoria(env);
-	    inst.setLambda(0.5f);
-	    inst.setFase(0f);
 	    inst.setGanho(103);     
-	     
-	        
+	    
+	    
 	    Melodia m2 = Tema.tema_aa_fuga1();
 	    //Melodia m2 = Tema.tema_aa_drawing_quintet_flauta();
 	    //Melodia m2 = Tema.tema_duda_no_frevo_eq();
@@ -88,32 +78,37 @@ public class Principal{
 	}
 	
 	private void tocaFrozen (){
+		//*
 		Instrumento1 inst;
-		
-		//inst  = new Instrumento1(1);        //---instrumento atonal
-		//inst  = new Instrumento1(0.2f);     	 //---quase tonal
-	    //inst  = new Instrumento1(0.065f);   //---atonal
-	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
-	    //inst  = new Instrumento1(0.0001f);  //---tonal: formante estreita
-	    inst  = new Instrumento1(0.00001f); //---tonal: som puro
-			
-		Envoltoria env   = new Envoltoria(); 
-	    Curva curva = new Curva(720);     
-
-	    curva.addPonto(  0f,   0f);
-	    curva.addPonto( 30f, 400f);
-	    curva.addPonto(240f, 300f);
-	    curva.addPonto(720f,   0f);
-
-	    env.setCURVA(curva);
-	           
-	    inst.setEnvoltoria(env);
-	    inst.setLambda(0.5f);
-	    inst.setFase(0f);
-	    inst.setGanho(103);  
-		
-	    Melodia mel = Melodias.frozen(); 
-	    		
+		//inst  = new Instrumento1 (1);			//---instrumento atonal
+		//inst  = new Instrumento1 (0.2f);     	//---quase tonal
+	    inst  = new Instrumento1 (0.065f);		//---atonal
+	    //inst  = new Instrumento1 (0.001f);		//---atonal ruidoso
+	    //inst  = new Instrumento1 (0.0001f);	//---tonal: formante estreita
+	    //inst  = new Instrumento1 (0.00001f);		//---tonal: som puro  
+	    
+	    inst.setGanho (110);
+	    //*/
+	    
+		/*
+	    Dispositivo inst  = BancoDeInstrumentos.trompete01(1f);
+	    inst.setGanho (2f); //*/
+	    /*
+		Dispositivo inst  = BancoDeInstrumentos.marimba_i51 ();
+	    inst.setGanho (.125f); //*/
+	    /*
+	  	Dispositivo inst  = BancoDeInstrumentos.sompuro ();
+	  	inst.setGanho (.125f); //*/
+	    //*/
+	  	/*
+		Dispositivo inst  = BancoDeInstrumentos.flauta_nao_harmonica_tonal ();
+		inst.setGanho (.125f); //*/
+		//*/
+	  	   
+	  	   
+	    Melodia mel = Melodias.frozen();
+	    
+	    /*	Andamento aconselhado para o frozen () */
 	    mel.setAndamento(.5f);
 	    
 		Som som = mel.getSom(inst);
@@ -130,8 +125,8 @@ public class Principal{
 		 *	que servirá para todos os instrumentos */
 		funcao1 = new Curva (720);
 		funcao1.addPonto (0f,	0f);
-		funcao1.addPonto (20f,	300f);
-		funcao1.addPonto (680f,	300f);
+		funcao1.addPonto (20f,	400f);
+		funcao1.addPonto (240f, 300f);
 		funcao1.addPonto (720f,	0f);
 	}
 }

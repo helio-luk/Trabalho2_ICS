@@ -14,195 +14,195 @@ public class IntervalosMusicais {
 	/**
 	 * Nota DO central, referencia para a localizacao
 	 */
-	static final float C3 = 261.6f;
+	static final float C1 = 65.4f;
+	static final float C2 = oitavaAcima (C1);
+	static final float C3 = oitavaAcima (C2);
+	static final float C4 = oitavaAcima (C3);
+	static final float C5 = oitavaAcima (C4);
+	
 	
 	/**
 	 * Constroi o intervalo musical correspondente a segunda menor
-	 * @param tom Representa o tom da escala em que a segunda sera
-	 * aplicada
-	 * @return Segunda-menor em relacao ao tom
+	 * @param doBase Representa o C da escala em que o C# sera
+	 * aplicado
+	 * @return Segunda-menor em relacao ao doBase
 	 */
-	public static float segundaMenor (float tom){
-		return (float)(tom * Math.pow(2, 1/12));
+	public static float Csust (float doBase){
+		return (float)(doBase * Math.pow(2, (double)1/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a segunda maior
-	 * @param tom Representa o tom da escala em que a segunda sera
-	 * aplicada
-	 * @return Segunda-maior em relacao ao tom
+	 * @param doBase Representa o C da escala em que o D sera
+	 * aplicado
+	 * @return Segunda-maior em relacao ao doBase
 	 */
-	public static float segundaMaior (float tom){
-		return (float)(tom * Math.pow(2, 2/12));
+	public static float D (float doBase){
+		return (float)(doBase * Math.pow(2, (double)2/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a terca menor
-	 * @param tom Representa o tom da escala em que a terca sera
-	 * aplicada
-	 * @return Terca-menor em relacao ao tom
+	 * @param doBase Representa o C da escala em que o D# sera
+	 * aplicado
+	 * @return Terca-menor em relacao ao doBase
 	 */
-	public static float tercaMenor (float tom){
-		return (float)(tom * Math.pow(2, 3/12));
+	public static float Dsust (float doBase){
+		return (float)(doBase * Math.pow(2, (double)3/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a terca maior
-	 * @param tom Representa o tom da escala em que a terca sera
-	 * aplicada
-	 * @return Terca-maior em relacao ao tom
+	 * @param doBase Representa o C da escala em que o E sera
+	 * aplicado
+	 * @return Terca-maior em relacao ao doBase
 	 */
-	public static float tercaMaior (float tom){
-		return (float)(tom * Math.pow(2, 4/12));
+	public static float E (float doBase){
+		return (float)(doBase * Math.pow(2, (double)4/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a quarta justa
-	 * @param tom Representa o tom da escala em que a quarta sera
-	 * aplicada
-	 * @return Quarta-justa em relacao ao tom
+	 * @param doBase Representa o C da escala em que o F sera
+	 * aplicado
+	 * @return Quarta-justa em relacao ao doBase
 	 */
-	public static float quartaJusta (float tom){
-		return (float)(tom * Math.pow(2, 5/12));
+	public static float F (float doBase){
+		return (float)(doBase * Math.pow(2, (double)5/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a quarta aumentada
-	 * @param tom Representa o tom da escala em que a quarta sera
-	 * aplicada
-	 * @return Quarta-aumentada em relacao ao tom
+	 * @param doBase Representa o C da escala em que o F# sera
+	 * aplicado
+	 * @return Quarta-aumentada em relacao ao doBase
 	 */
-	public static float quartaAumentada (float tom){
-		return (float)(tom * Math.pow(2, 6/12));
+	public static float Fsust (float doBase){
+		return (float)(doBase * Math.pow(2, (double)6/12));
 	}
 
 	/**
 	 * Constroi o intervalo musical correspondente a quinta justa
-	 * @param tom Representa o tom da escala em que a quinta sera
-	 * aplicada
-	 * @return Quinta-justa em relacao ao tom
+	 * @param doBase Representa o C da escala em que o G sera
+	 * aplicado
+	 * @return Quinta-justa em relacao ao doBase
 	 */
-	public static float quintaJusta (float tom){
-		return (float)(tom * Math.pow(2, 7/12));
+	public static float G (float doBase){
+		return (float)(doBase * Math.pow(2, (double)7/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a sexta menor
-	 * @param tom Representa o tom da escala em que a sexta sera
-	 * aplicada
-	 * @return Sexta-menor em relacao ao tom
+	 * @param doBase Representa o C da escala em que o G# sera
+	 * aplicado
+	 * @return Sexta-menor em relacao ao doBase
 	 */
-	public static float sextaMenor (float tom){
-		return (float)(tom * Math.pow(2, 8/12));
+	public static float Gsust (float doBase){
+		return (float)(doBase * Math.pow(2, (double)8/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a sexta maior
-	 * @param tom Representa o tom da escala em que a sexta sera
-	 * aplicada
-	 * @return Sexta-maior em relacao ao tom
+	 * @param doBase Representa o C da escala em que o A sera
+	 * aplicado
+	 * @return Sexta-maior em relacao ao doBase
 	 */
-	public static float sextaMaior (float tom){
-		return (float)(tom * Math.pow(2, 9/12));
+	public static float A (float doBase){
+		return (float)(doBase * Math.pow(2, (double)9/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a setima menor
-	 * @param tom Representa o tom da escala em que a setima sera
-	 * aplicada
-	 * @return Setima-menor em relacao ao tom
+	 * @param doBase Representa o C da escala em que o A# sera
+	 * aplicado
+	 * @return Setima-menor em relacao ao doBase
 	 */
-	public static float setimaMenor (float tom){
-		return (float)(tom * Math.pow(2, 10/12));
+	public static float Asust (float doBase){
+		return (float)(doBase * Math.pow(2, (double)10/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a setima maior
-	 * @param tom Representa o tom da escala em que a setima sera
-	 * aplicada
-	 * @return Setima-maior em relacao ao tom
+	 * @param doBase Representa o C da escala em que o B sera
+	 * aplicado
+	 * @return Setima-maior em relacao ao doBase
 	 */
-	public static float setimaMaior (float tom){
-		return (float)(tom * Math.pow(2, 11/12));
+	public static float B (float doBase){
+		return (float)(doBase * Math.pow(2, (double)11/12));
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a oitava ascendente
-	 * @param tom Representa o tom da escala em que a oitava sera
+	 * @param doBase Representa o doBase da escala em que a oitava sera
 	 * aplicada
-	 * @return Oitava ascendente em relacao ao tom
+	 * @return Oitava ascendente em relacao ao doBase
 	 */
-	public static float oitavaAcima (float tom){
-		return (float)(tom * 2);
+	public static float oitavaAcima (float doBase){
+		return (float)(doBase * 2f);
 	}
 	
 	/**
 	 * Constroi o intervalo musical correspondente a oitava descendente
-	 * @param tom Representa o tom da escala em que a oitava sera
+	 * @param doBase Representa o doBase da escala em que a oitava sera
 	 * aplicada
-	 * @return Oitava descendente em relacao ao tom
+	 * @return Oitava descendente em relacao ao doBase
 	 */
-	public static float oitavaAbaixo (float tom){
-		return (float)(tom * .5f);
+	public static float oitavaAbaixo (float doBase){
+		return (float)(doBase * .5f);
 	}
 
+	
 	/**
 	 * Constroi a duracao da semibreve proporcional em relacao a
-	 * seminima ja definida 
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da semibreve ajustado
 	 */
-	public static float semibreve (int seminima){
-		return seminima * 4f;
+	public static float semibreve (){
+		return 4f * Melodias.melodiaPrincipal.getSeminima ();
 	}
 	
 	/**
 	 * Constroi a duracao da minima proporcional em relacao a
-	 * seminima ja definida
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da minima ajustado
 	 */
-	public static float minima (int seminima){
-		return seminima * 2f;
+	public static float minima (){
+		return 2f * Melodias.melodiaPrincipal.getSeminima();
 	}
 	
 	/**
 	 * Constroi a duracao da colcheia proporcional em relacao a
-	 * seminima ja definida
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da colcheia ajustado
 	 */
-	public static float colcheia (int seminima){
-		return seminima * .5f;
+	public static float colcheia (){
+		return .5f  * Melodias.melodiaPrincipal.getSeminima();
 	}
 	
 	/**
 	 * Constroi a duracao da semicolcheia proporcional em relacao a
-	 * seminima ja definida
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da semicolcheia ajustado
 	 */
-	public static float semicolcheia (int seminima){
-		return seminima * .25f;
+	public static float semicolcheia (){
+		return .25f * Melodias.melodiaPrincipal.getSeminima();
 	}
 	
 	/**
 	 * Constroi a duracao da fusa proporcional em relacao a
-	 * seminima ja definida
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da fusa ajustado
 	 */
-	public static float fusa (int seminima){
-		return seminima * .125f;
+	public static float fusa (){
+		return .125f * Melodias.melodiaPrincipal.getSeminima();
 	}
 	
 	/**
 	 * Constroi a duracao da semifusa proporcional em relacao a
-	 * seminima ja definida
-	 * @param seminima Valor da seminima pre-determinado na melodia
+	 * seminima ja definida pela melodia
 	 * @return Valor da semifusa ajustado
 	 */
-	public static float semifusa (int seminima){
-		return seminima * .0625f;
+	public static float semifusa (){
+		return .0625f * Melodias.melodiaPrincipal.getSeminima();
 	}
 }

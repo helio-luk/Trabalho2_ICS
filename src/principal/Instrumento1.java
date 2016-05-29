@@ -74,7 +74,14 @@ public class Instrumento1 extends Dispositivo{
 		/*	Inicializa o oscilador na primeira batida do relógio */
 		this.setRelogio (0);
 		
-		this.fatorCorte = 0;
+		/*	Configuração do fator de corte default */
+		this.fatorCorte = 1;
+		
+		/*	Configuração do lambda default */
+		this.setLambda (0.5f);
+		
+		/*	Configuração da fase default */
+		this.setFase (0f);
 	}
 
 	/**
@@ -156,7 +163,8 @@ public class Instrumento1 extends Dispositivo{
 	/**
 	 * Reseta o instrumento, garantindo a sua estrutura
 	 */
-    public void reset (){        
+    public void reset (){    	
+    	this.envoltoria.setCURVA(Principal.funcao1);
         /*	Igualando a duração da envoltória com a do instrumento */
     	this.envoltoria.setDuracao (this.duracao);
     	/*	Resetando a envoltória */
