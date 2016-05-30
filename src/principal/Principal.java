@@ -48,12 +48,12 @@ public class Principal{
    }
 
 	private void testeInstrumento1() {
-		Instrumento2 inst  = new Instrumento2(1);        //---instrumento atonal
-		//inst  = new Instrumento1(0.2f);     	 //---quase tonal
-	    //inst  = new Instrumento1(0.065f);   //---atonal
-	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
-	    //inst  = new Instrumento1(0.0001f);  //---tonal: formante estreita
-	    //inst  = new Instrumento1(0.00001f); //---tonal: som puro
+		Instrumento3 inst  = new Instrumento3(1);        //---instrumento atonal
+		//inst  = new Instrumento2(0.2f);     	 //---quase tonal
+	    //inst  = new Instrumento3(0.065f);   //---atonal
+	    //inst  = new Instrumento2(0.001f);   //---atonal ruidoso
+	    inst  = new Instrumento3(0.0001f);  //---tonal: formante estreita
+	    //inst  = new Instrumento3(0.00001f); //---tonal: som puro
 
 	    inst.setGanho(103);     
 	    
