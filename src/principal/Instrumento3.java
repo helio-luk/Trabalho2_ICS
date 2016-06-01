@@ -10,6 +10,7 @@ import sintese.Somador;
 public class Instrumento3 extends Dispositivo{
 	
 	Envoltoria envoltoria, envoltoriaFreq = null;
+	Envoltoria envoltoriaFreqRuido = null;
 	Ruido ruido = null;
 	Somador somador, somador2 = null;
 	Oscilador oscilador1, oscilador2 = null;
@@ -24,6 +25,8 @@ public class Instrumento3 extends Dispositivo{
 	
 	public Instrumento3(){
 		this.envoltoria = new Envoltoria();
+		this.envoltoriaFreq = new Envoltoria();
+		this.envoltoriaFreqRuido = new Envoltoria();
 		this.ruido = new Ruido();
 		this.oscilador1 = new Oscilador();
 		this.oscilador2 = new Oscilador();
@@ -103,7 +106,13 @@ public class Instrumento3 extends Dispositivo{
         this.envoltoriaFreq.setDuracao(this.duracao);
         this.envoltoriaFreq.reset();
         
-        this.ruido = new Ruido(1000,(float) this.frequencia * this.fatorCorte, this.fase );        
+        this.envoltoriaFreqRuido.setCURVA(Principal.funcaoFrequenciaRuido);
+        this.envoltoriaFreqRuido.setDuracao(this.duracao);
+        this.envoltoriaFreqRuido.reset();        
+        
+        this.ruido = new Ruido(envoltoriaFreqRuido);   
+        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFase (this.fase); 
         this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();
         
@@ -111,7 +120,7 @@ public class Instrumento3 extends Dispositivo{
         this.somador.setDuracao(this.duracao);
         this.somador.reset();
         
-        this.oscilador1= new Oscilador(3000, 100000, 180);
+        this.oscilador1= new Oscilador(3000, 10, 0);
         this.oscilador1.setFase(this.fase);
         this.oscilador1.setDuracao(this.duracao);
         this.oscilador1.reset();

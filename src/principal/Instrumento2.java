@@ -11,6 +11,7 @@ public class Instrumento2 extends Dispositivo {
 
 	Envoltoria envoltoria = null;
 	Envoltoria envoltoriaFreq = null;
+	Envoltoria envoltoriaFreqRuido = null;
 	Ruido ruido = null;
 	Oscilador oscilador = null;
 	Somador somador = null;
@@ -21,13 +22,16 @@ public class Instrumento2 extends Dispositivo {
 	private float fase;
 	private float ganho = 1;
 	private float fatorCorte;
-	private Curva funcaoFrequencia = new Curva(720);
+	
 	
 	
 	public Instrumento2(){
 		this.envoltoria = new Envoltoria();
+		this.envoltoriaFreq = new Envoltoria();
+		this.envoltoriaFreqRuido = new Envoltoria();
 		this.ruido = new Ruido();
 		this.oscilador = new Oscilador();
+		
 		
 		this.setRelogio(0);
 		this.fatorCorte = 1;
@@ -67,19 +71,24 @@ public class Instrumento2 extends Dispositivo {
 	}
 	
 	public void reset(){
+		
+		
 		this.envoltoria.setCURVA(Principal.funcao1);
     	this.envoltoria.setDuracao(this.duracao);    	
-        this.envoltoria.reset();
+        this.envoltoria.reset();        
         
-        
-        this.funcaoFrequencia.addPonto(0f, this.frequencia);
-        this.funcaoFrequencia.addPonto(720f, this.frequencia);
-        
-        this.envoltoriaFreq.setCURVA(this.funcaoFrequencia);
+        this.envoltoriaFreq.setCURVA(Principal.funcaoFrequencia);
         this.envoltoriaFreq.setDuracao(this.duracao);
         this.envoltoriaFreq.reset();
         
-        this.ruido = new Ruido(10,(float) this.frequencia * this.fatorCorte, this.fase );        
+        this.envoltoriaFreqRuido.setCURVA(Principal.funcaoFrequenciaRuido);
+        this.envoltoriaFreqRuido.setDuracao(this.duracao);
+        this.envoltoriaFreqRuido.reset();        
+        
+        
+        this.ruido = new Ruido(envoltoriaFreqRuido);   
+        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFase (this.fase); 
         this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();
         
@@ -93,6 +102,8 @@ public class Instrumento2 extends Dispositivo {
         this.oscilador.reset();
         
         
+        
+		    
 	}
 	
 	public void setGanho(float ganho){
