@@ -39,46 +39,20 @@ public class Principal{
 		constroiFuncao2();
 		constroiFuncao3();
 		tocaFrozen ();
-   }
-
-	private void testeInstrumento1() {
-		Instrumento3 inst  = new Instrumento3(1);        //---instrumento atonal
-		//inst  = new Instrumento2(0.2f);     	 //---quase tonal
-	    //inst  = new Instrumento3(0.065f);   //---atonal
-	    //inst  = new Instrumento2(0.001f);   //---atonal ruidoso
-	    inst  = new Instrumento3(0.0001f);  //---tonal: formante estreita
-	    //inst  = new Instrumento3(0.00001f); //---tonal: som puro
-
-	    inst.setGanho(103);     
-	    
-	    
-	    Melodia m2 = Tema.tema_aa_fuga1();
-	    //Melodia m2 = Tema.tema_aa_drawing_quintet_flauta();
-	    //Melodia m2 = Tema.tema_duda_no_frevo_eq();
-	     
-	    m2.getAutor();     
-	     
-	    //m2.setAndamento(0.45f);
-	    m2.setAndamento(0.95f);
-
-	    Som som = m2.getSom(inst);
-	    som.visualiza();
-
-	    try{ System.in.read();
-	         System.exit(0);
-	    }
-	    catch(Exception e){};
 	}
+
 	
 	private void tocaFrozen (){
+		IN3 inst;
+		inst = new IN3(0.00000001f);
 		
-		Instrumento3 inst;
+		//Instrumento2 inst;
 		//inst  = new Instrumento2 (1);			//---instrumento atonal
 		//inst  = new Instrumento3 (0.2f);     	//---quase tonal
 	    //inst  = new Instrumento2 (0.065f);		//---atonal
 	    //inst  = new Instrumento2 (0.001f);		//---atonal ruidoso
 	    //inst  = new Instrumento2 (0.0001f);	//---tonal: formante estreita
-	    inst  = new Instrumento3 (0.00000001f);		//---tonal: som puro  
+	    //inst  = new Instrumento2 (0.00000001f);		//---tonal: som puro  
 	    
 	    inst.setGanho (110);
 	    //*/
@@ -99,7 +73,7 @@ public class Principal{
 		//*/
 	  	   
 	  	   
-	    Melodia mel = Melodias.frozen();
+	    Melodia mel = Melodias.granada();
 	    
 	    
 	    mel.setAndamento(.5f);
@@ -128,9 +102,15 @@ public class Principal{
 	}
 	
 	private void constroiFuncao3(){
-		funcaoFrequenciaRuido = new Curva(720);
+		/*funcaoFrequenciaRuido = new Curva(720);
 		funcaoFrequenciaRuido.addPonto(0f, 200f);        
-        funcaoFrequenciaRuido.addPonto(720f, 200f);
+        funcaoFrequenciaRuido.addPonto(720f, 200f);*/
+		
+		funcaoFrequenciaRuido = new Curva(720);     
+		funcaoFrequenciaRuido.addPonto(0f, 110f);   
+		funcaoFrequenciaRuido.addPonto(10f, 300f);
+		funcaoFrequenciaRuido.addPonto(140, 200f);
+	    funcaoFrequenciaRuido.addPonto(720f, 110f);  
 	}
 	
 	
