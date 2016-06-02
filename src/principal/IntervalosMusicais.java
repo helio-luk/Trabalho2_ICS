@@ -171,6 +171,15 @@ public class IntervalosMusicais {
 	}
 	
 	/**
+	 * Constroi a duracao da seminima proporcional em relacao a
+	 * seminima ja definida pela melodia
+	 * @return Valor da seminima ajustado
+	 */
+	public static float seminima (){
+		return Melodias.melodiaPrincipal.getSeminima();
+	}
+	
+	/**
 	 * Constroi a duracao da colcheia proporcional em relacao a
 	 * seminima ja definida pela melodia
 	 * @return Valor da colcheia ajustado

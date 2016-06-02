@@ -23,38 +23,31 @@ import sintese.Tema;
  * @since	26/05/2016
  */
 public class Principal{
-	/**
-	 * Funcao comum a todos os instrumentos, um trapezio
-	 */
-	public static Curva funcao1 = null;	
 	
-	/**
-     * Inicia a execucao de todo o programa
-     * @param args Parametros passados via linha de comando
-     */
+	public static Curva funcao1 = null;
+	public static Curva funcaoFrequencia = null;
+	public static Curva funcaoFrequenciaRuido = null;
+	
 	public static void main (String args[]){
-		System.out.println ("testando som rodrigo!!\n");
-		new Principal();
-		
-		
+		//new Principal();
+		new InterfaceGrafica();
 		System.gc();
 	}
 	
-	public Principal (){
-		/*	Construção da F1 */
-		constroiFuncao1 ();
-		
-		//testeInstrumento1();  
-		tocaFrozen ();
+	public Principal (){		
+		constroiFuncao1();
+		constroiFuncao2();
+		constroiFuncao3();
+		//tocaFrozen ();
    }
 
 	private void testeInstrumento1() {
-		Instrumento1 inst  = new Instrumento1(1);        //---instrumento atonal
-		//inst  = new Instrumento1(0.2f);     	 //---quase tonal
-	    //inst  = new Instrumento1(0.065f);   //---atonal
-	    //inst  = new Instrumento1(0.001f);   //---atonal ruidoso
-	    //inst  = new Instrumento1(0.0001f);  //---tonal: formante estreita
-	    //inst  = new Instrumento1(0.00001f); //---tonal: som puro
+		Instrumento3 inst  = new Instrumento3(1);        //---instrumento atonal
+		//inst  = new Instrumento2(0.2f);     	 //---quase tonal
+	    //inst  = new Instrumento3(0.065f);   //---atonal
+	    //inst  = new Instrumento2(0.001f);   //---atonal ruidoso
+	    inst  = new Instrumento3(0.0001f);  //---tonal: formante estreita
+	    //inst  = new Instrumento3(0.00001f); //---tonal: som puro
 
 	    inst.setGanho(103);     
 	    
@@ -78,14 +71,14 @@ public class Principal{
 	}
 	
 	private void tocaFrozen (){
-		//*
+		
 		Instrumento1 inst;
-		//inst  = new Instrumento1 (1);			//---instrumento atonal
-		//inst  = new Instrumento1 (0.2f);     	//---quase tonal
-	    inst  = new Instrumento1 (0.065f);		//---atonal
-	    //inst  = new Instrumento1 (0.001f);		//---atonal ruidoso
-	    //inst  = new Instrumento1 (0.0001f);	//---tonal: formante estreita
-	    //inst  = new Instrumento1 (0.00001f);		//---tonal: som puro  
+		//inst  = new Instrumento2 (1);			//---instrumento atonal
+		//inst  = new Instrumento3 (0.2f);     	//---quase tonal
+	    //inst  = new Instrumento2 (0.065f);		//---atonal
+	    //inst  = new Instrumento2 (0.001f);		//---atonal ruidoso
+	    //inst  = new Instrumento2 (0.0001f);	//---tonal: formante estreita
+	    inst  = new Instrumento1 (0.00000001f);		//---tonal: som puro  
 	    
 	    inst.setGanho (110);
 	    //*/
@@ -106,9 +99,10 @@ public class Principal{
 		//*/
 	  	   
 	  	   
-	    Melodia mel = Melodias.frozen();
+	    //Melodia mel = Melodias.frozen();
+	    Melodia mel = Tema.tema_aa_fuga1();
 	    
-	    /*	Andamento aconselhado para o frozen () */
+	    
 	    mel.setAndamento(.5f);
 	    
 		Som som = mel.getSom(inst);
@@ -120,13 +114,25 @@ public class Principal{
 	    catch(Exception e){};
 	}
 
-	private void constroiFuncao1 () {
-		/*	Criando curva com resolução de 720 pontos,
-		 *	que servirá para todos os instrumentos */
+	private void constroiFuncao1 () {		
 		funcao1 = new Curva (720);
 		funcao1.addPonto (0f,	0f);
 		funcao1.addPonto (20f,	400f);
 		funcao1.addPonto (240f, 300f);
 		funcao1.addPonto (720f,	0f);
 	}
+	
+	private void constroiFuncao2(){
+		funcaoFrequencia = new Curva(720);
+		funcaoFrequencia.addPonto( 0f, 2000f);        
+        funcaoFrequencia.addPonto(720f, 0f);
+	}
+	
+	private void constroiFuncao3(){
+		funcaoFrequenciaRuido = new Curva(720);
+		funcaoFrequenciaRuido.addPonto(0f, 200f);        
+        funcaoFrequenciaRuido.addPonto(720f, 200f);
+	}
+	
+	
 }
