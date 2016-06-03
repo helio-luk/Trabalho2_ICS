@@ -47,8 +47,8 @@ public class Instrumento1 extends Dispositivo{
 		this.ruido = new Ruido();	
 		this.oscilador = new Oscilador();		
 		this.setRelogio(0);	
-		this.fatorCorte = 1;		
-		this.setLambda (0.5f);		
+		this.fatorCorte = 0.5f;		
+		this.setLambda (0.5f);
 		this.setFase (0f);
 	}
 
@@ -127,6 +127,14 @@ public class Instrumento1 extends Dispositivo{
     }
 
     /**
+     * Recuperacao do valor do ganho do instrumento
+     * @return Valor atribuido ao ganho
+     */
+    public float getGanho (){    	
+    	return this.ganho;
+    }
+    
+    /**
      * Atribui valor ao ganho
      * @param ganho	Valor a ser atribuido ao ganho
      */
@@ -152,6 +160,32 @@ public class Instrumento1 extends Dispositivo{
     	this.reset();
     }
     
+	/**
+	 * Recuperacao do valor do fator de corte do instrumento
+	 * @return Valor do fator de corte
+	 */
+	public float getFatorCorte (){
+		return this.fatorCorte;
+	}
+    
+    /**
+	 * Configuracao do fato de corte com o instrumento ja criado
+	 * @param fatorCorte Valor a ser atruido ao fator de corte
+	 */
+	public void setFatorCorte (float fatorCorte){
+		this.fatorCorte = fatorCorte;
+		
+		this.reset();
+	}
+	
+	/**
+	 * Recuperacao do valor da estereofonia para a saida esquerda do instrumento
+     * @return Porcentagem da saida esquerda (entre 0 e 1)
+     */
+    public double getLambda(){    	
+    	return this.lambda;
+    }
+	
     /**
      * Atribui um valor de estereofonia para a saida do instrumento
      * @param lambda Porcentagem da saida esquerda (entre 0 e 1)
@@ -169,6 +203,14 @@ public class Instrumento1 extends Dispositivo{
     public void setEnvoltoria (Envoltoria envoltoria){   	
     	this.envoltoria = envoltoria;   	
     	this.reset();
+    }
+    
+    /**
+     * Recuperacao do valor do angulo de fase do instrumento
+     * @return Valor atribuido a fase
+     */
+    public float getFase(){
+    	return this.fase;
     }
     
     /**

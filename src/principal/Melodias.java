@@ -16,20 +16,16 @@ import sintese.Nota;
 public class Melodias {
 	/**
 	 * Melodia a ser modificada, independente do tema criado
-	 */
-	static Melodia melodiaPrincipal;
-	/**
-	 * 	Nota a ser manipulada, a fim de construção da melodia
-	 */
-	static Nota nota;
-	/**
+	 * Nota a ser manipulada, a fim de construção da melodia
 	 * Frequencia a ser atribuída à nota durante a melodia
-	 */
-	static float frequencia;
-	/**
 	 * Amplitude padrao a ser utilizado pelas notas
 	 */
+	static Melodia 	 melodiaPrincipal;
+	static Nota 	 nota;
+	static float 	 frequencia;
 	static final int amplitudePadrao = 15;
+	
+	
 	
 	/**
 	 * Construcao da melodia de maneira default
@@ -42,7 +38,7 @@ public class Melodias {
 		melodiaPrincipal.setSeminima (1);
 		
 		/*	Configuração do andamento */
-		melodiaPrincipal.setAndamento (60);
+		melodiaPrincipal.setAndamento (0.5f);
 	}
 	
 	/**
@@ -268,6 +264,8 @@ public class Melodias {
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 8);
 		melodiaPrincipal.addNota (nota);
 		
+		melodiaPrincipal.setAndamento(0.5f);
+		
 		return melodiaPrincipal;
 	}
 		
@@ -392,6 +390,8 @@ public class Melodias {
 		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
 		nota = new Nota (IntervalosMusicais.minima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
+		
+		melodiaPrincipal.setAndamento(0.5f);
 		
 		return melodiaPrincipal;
 	}
@@ -837,6 +837,9 @@ public class Melodias {
 		nota = new Nota (IntervalosMusicais.semibreve() + IntervalosMusicais.seminima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
+
+		melodiaPrincipal.setAndamento(0.5f);
+
 		return melodiaPrincipal;
 	}
 	

@@ -12,13 +12,13 @@ package principal;
  */
 public class IntervalosMusicais {
 	/**
-	 * Nota DO central, referencia para a localizacao
+	 * Nota DO 1, referencia para a localizacao dos demais
 	 */
-	static final float C1 = 65.4f;
-	static final float C2 = oitavaAcima (C1);
-	static final float C3 = oitavaAcima (C2);
-	static final float C4 = oitavaAcima (C3);
-	static final float C5 = oitavaAcima (C4);
+	public static final float C1 = 65.4f;
+	public static final float C2 = oitavaAcima (C1);
+	public static final float C3 = oitavaAcima (C2);
+	public static final float C4 = oitavaAcima (C3);
+	public static final float C5 = oitavaAcima (C4);
 	
 	
 	/**
@@ -151,6 +151,7 @@ public class IntervalosMusicais {
 		return (float)(doBase * .5f);
 	}
 
+	
 	
 	/**
 	 * Constroi a duracao da semibreve proporcional em relacao a

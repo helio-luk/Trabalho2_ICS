@@ -6,6 +6,10 @@ import javax.swing.UIManager;
 
 public class FormatacaoPadrao {
 
+	/**
+	 *	Configuracoes de idioma, tamanho e estilo de fontes dos
+	 *	componentes mais utilizados
+	 */
 	public FormatacaoPadrao (){
 		UIManager.put("FileChooser.openDialogTitleText", "Abrir arquivo");
         UIManager.put("FileChooser.lookInLabelText", "Buscar em");

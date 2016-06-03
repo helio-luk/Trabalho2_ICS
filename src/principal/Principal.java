@@ -1,16 +1,8 @@
-/*	Pacote ao qual pertence */
+/**	Pacote ao qual pertence */
 package principal;
 
-import sintese.BancoDeInstrumentos;
-
-/*	Importando Classes necessárias */
-
+/**	Importando Classes necessárias */
 import sintese.Curva;
-import sintese.Dispositivo;
-import sintese.Envoltoria;
-import sintese.Melodia;
-import sintese.Som;
-import sintese.Tema;
 
 /** 
  * Constroi as condicoes basicas para a execucao do programa:<br>
@@ -23,98 +15,47 @@ import sintese.Tema;
  * @since	26/05/2016
  */
 public class Principal{
-	
+	/**
+	 * Curva para as envoltorias de amplitude para os
+	 * 3 instrumentos criados
+	 */
 	public static Curva funcao1 = null;
+	/**
+	 * Curva para as envoltorias de frequencia para o
+	 * segundo instrumento criado
+	 */
 	public static Curva funcaoFrequencia = null;
+	/**
+	 * Curva para as envoltorias de frequencia, associada
+	 * ao ruido, para o segundo e o terceiro instrumento criado
+	 */
 	public static Curva funcaoFrequenciaRuido = null;
 	
+	
+	
+	/**
+	 * Garante a execucao do programa
+	 * @param args Argumentos recebidos via linha de comando
+	 */
 	public static void main (String args[]){
 		//new Principal();
 		new InterfaceGrafica();
 		System.gc();
 	}
 	
-	public Principal (){		
+	/**
+	 * Construcao de todas as 3 curvas
+	 */
+	public static void constroiFuncoes (){
 		constroiFuncao1();
 		constroiFuncao2();
 		constroiFuncao3();
-		//tocaFrozen ();
-   }
-
-	private void testeInstrumento1() {
-		Instrumento3 inst  = new Instrumento3(1);        //---instrumento atonal
-		//inst  = new Instrumento2(0.2f);     	 //---quase tonal
-	    //inst  = new Instrumento3(0.065f);   //---atonal
-	    //inst  = new Instrumento2(0.001f);   //---atonal ruidoso
-	    inst  = new Instrumento3(0.0001f);  //---tonal: formante estreita
-	    //inst  = new Instrumento3(0.00001f); //---tonal: som puro
-
-	    inst.setGanho(103);     
-	    
-	    
-	    Melodia m2 = Tema.tema_aa_fuga1();
-	    //Melodia m2 = Tema.tema_aa_drawing_quintet_flauta();
-	    //Melodia m2 = Tema.tema_duda_no_frevo_eq();
-	     
-	    m2.getAutor();     
-	     
-	    //m2.setAndamento(0.45f);
-	    m2.setAndamento(0.95f);
-
-	    Som som = m2.getSom(inst);
-	    som.visualiza();
-
-	    try{ System.in.read();
-	         System.exit(0);
-	    }
-	    catch(Exception e){};
 	}
 	
-	private void tocaFrozen (){
-		
-		Instrumento1 inst;
-		//inst  = new Instrumento2 (1);			//---instrumento atonal
-		//inst  = new Instrumento3 (0.2f);     	//---quase tonal
-	    //inst  = new Instrumento2 (0.065f);		//---atonal
-	    //inst  = new Instrumento2 (0.001f);		//---atonal ruidoso
-	    //inst  = new Instrumento2 (0.0001f);	//---tonal: formante estreita
-	    inst  = new Instrumento1 (0.00000001f);		//---tonal: som puro  
-	    
-	    inst.setGanho (110);
-	    //*/
-	    
-		/*
-	    Dispositivo inst  = BancoDeInstrumentos.trompete01(1f);
-	    inst.setGanho (2f); //*/
-	    /*
-		Dispositivo inst  = BancoDeInstrumentos.marimba_i51 ();
-	    inst.setGanho (.125f); //*/
-	    /*
-	  	Dispositivo inst  = BancoDeInstrumentos.sompuro ();
-	  	inst.setGanho (.125f); //*/
-	    //*/
-	  	/*
-		Dispositivo inst  = BancoDeInstrumentos.flauta_nao_harmonica_tonal ();
-		inst.setGanho (.125f); //*/
-		//*/
-	  	   
-	  	   
-	    //Melodia mel = Melodias.frozen();
-	    Melodia mel = Tema.tema_aa_fuga1();
-	    
-	    
-	    mel.setAndamento(.5f);
-	    
-		Som som = mel.getSom(inst);
-	    som.visualiza();
-
-	    try{ System.in.read();
-	         System.exit(0);
-	    }
-	    catch(Exception e){};
-	}
-
-	private void constroiFuncao1 () {		
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de amplitude
+	 */
+	private static void constroiFuncao1 () {		
 		funcao1 = new Curva (720);
 		funcao1.addPonto (0f,	0f);
 		funcao1.addPonto (20f,	400f);
@@ -122,17 +63,22 @@ public class Principal{
 		funcao1.addPonto (720f,	0f);
 	}
 	
-	private void constroiFuncao2(){
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de frequencia
+	 */
+	private static void constroiFuncao2(){
 		funcaoFrequencia = new Curva(720);
 		funcaoFrequencia.addPonto( 0f, 2000f);        
         funcaoFrequencia.addPonto(720f, 0f);
 	}
 	
-	private void constroiFuncao3(){
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de frequencia,
+	 * associada ao ruido
+	 */
+	private static void constroiFuncao3(){
 		funcaoFrequenciaRuido = new Curva(720);
 		funcaoFrequenciaRuido.addPonto(0f, 200f);        
         funcaoFrequenciaRuido.addPonto(720f, 200f);
-	}
-	
-	
+	}	
 }
