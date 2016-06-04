@@ -14,11 +14,13 @@ public class IntervalosMusicais {
 	/**
 	 * Nota DO 1, referencia para a localizacao dos demais
 	 */
+
 	public static final float C1 = 65.4f;
 	public static final float C2 = oitavaAcima (C1);
 	public static final float C3 = oitavaAcima (C2);
 	public static final float C4 = oitavaAcima (C3);
 	public static final float C5 = oitavaAcima (C4);
+
 	
 	
 	/**

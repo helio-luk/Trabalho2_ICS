@@ -118,7 +118,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 	 */
 	public InterfaceGrafica (){
 		new FormatacaoPadrao();
-		Principal.constroiFuncoes();
+		
 		
 		janelaPrincipal = new JFrame("Trabalho 2 - H\u0026R");
 		
