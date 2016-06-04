@@ -1,16 +1,12 @@
-/*	Pacote ao qual pertence */
+/**	Pacote ao qual pertence */
 package principal;
 
 import sintese.BancoDeInstrumentos;
-
-/*	Importando Classes necessárias */
-
+/**	Importando Classes necessárias */
 import sintese.Curva;
 import sintese.Dispositivo;
-import sintese.Envoltoria;
 import sintese.Melodia;
 import sintese.Som;
-import sintese.Tema;
 
 /** 
  * Constroi as condicoes basicas para a execucao do programa:<br>
@@ -23,25 +19,48 @@ import sintese.Tema;
  * @since	26/05/2016
  */
 public class Principal{
-	
+
+	/**
+	 * Curva para as envoltorias de amplitude para os
+	 * 3 instrumentos criados
+	 */
 	public static Curva funcao1 = null;
+	/**
+	 * Curva para as envoltorias de frequencia para o
+	 * segundo instrumento criado
+	 */
 	public static Curva funcaoFrequencia = null;
+	/**
+	 * Curva para as envoltorias de frequencia, associada
+	 * ao ruido, para o segundo e o terceiro instrumento criado
+	 */
 	public static Curva funcaoFrequenciaRuido = null;
 	
+	
+	
+	/**
+	 * Garante a execucao do programa
+	 * @param args Argumentos recebidos via linha de comando
+	 */
 	public static void main (String args[]){
-		System.out.println ("testando som rodrigo!!\n");
-		new Principal();		
+		//new Principal();
+		new InterfaceGrafica();
+		//teste ();
 		System.gc();
 	}
 	
-	public Principal (){		
+	/**
+	 * Construcao de todas as 3 curvas
+	 */
+	public static void constroiFuncoes (){
 		constroiFuncao1();
 		constroiFuncao2();
 		constroiFuncao3();
-		tocaFrozen ();
+
 	}
 
 	
+
 	private void tocaFrozen (){
 		IN2 inst;
 		inst = new IN2(0.00000001f);
@@ -87,7 +106,12 @@ public class Principal{
 	    catch(Exception e){};
 	}
 
-	private void constroiFuncao1 () {		
+
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de amplitude
+	 */
+	private static void constroiFuncao1 () {		
+
 		funcao1 = new Curva (720);
 		funcao1.addPonto (0f,	0f);
 		funcao1.addPonto (20f,	400f);
@@ -95,23 +119,54 @@ public class Principal{
 		funcao1.addPonto (720f,	0f);
 	}
 	
-	private void constroiFuncao2(){
+
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de frequencia
+	 */
+	private static void constroiFuncao2(){
+
 		funcaoFrequencia = new Curva(720);
 		funcaoFrequencia.addPonto( 0f, 2000f);        
         funcaoFrequencia.addPonto(720f, 0f);
 	}
 	
-	private void constroiFuncao3(){
-		/*funcaoFrequenciaRuido = new Curva(720);
+
+	/**
+	 * Construcao, apenas, da curva para a envoltoria de frequencia,
+	 * associada ao ruido
+	 */
+	private static void constroiFuncao3(){
+		funcaoFrequenciaRuido = new Curva(720);
 		funcaoFrequenciaRuido.addPonto(0f, 200f);        
-        funcaoFrequenciaRuido.addPonto(720f, 200f);*/
-		
-		funcaoFrequenciaRuido = new Curva(720);     
-		funcaoFrequenciaRuido.addPonto(0f, 110f);   
-		funcaoFrequenciaRuido.addPonto(10f, 300f);
-		funcaoFrequenciaRuido.addPonto(140, 200f);
-	    funcaoFrequenciaRuido.addPonto(720f, 110f);  
+        funcaoFrequenciaRuido.addPonto(720f, 200f);
 	}
 	
-	
+	private static void teste(){
+		constroiFuncoes ();
+		//Instrumento1 inst = new Instrumento1();
+		Dispositivo inst = BancoDeInstrumentos.sompuro();
+		
+		/*
+		inst.setFatorCorte(1f);
+		inst.setFase(0f);
+		inst.setLambda(0.5);
+		//*/
+		inst.setGanho(1.5f);
+		
+		Melodia mel = Melodias.frozen();
+		
+		mel.setAndamento(0.5f);
+		mel.transposicao(1);
+		//mel.inversao();
+		
+		Som som = mel.getSom(inst);
+		
+		som.setNome("testando");
+		
+		som.salvawave();
+		//som.tocawave();
+		System.out.println("");
+			
+	}
+
 }

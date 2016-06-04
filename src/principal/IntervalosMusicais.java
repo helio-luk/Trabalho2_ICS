@@ -12,14 +12,15 @@ package principal;
  */
 public class IntervalosMusicais {
 	/**
-	 * Nota DO central, referencia para a localizacao
+	 * Nota DO 1, referencia para a localizacao dos demais
 	 */
-	
-	static final float C1 = 65.4f;
-	static final float C2 = oitavaAcima (C1);
-	static final float C3 = oitavaAcima (C2);
-	static final float C4 = oitavaAcima (C3);
-	static final float C5 = oitavaAcima (C4);
+
+	public static final float C1 = 65.4f;
+	public static final float C2 = oitavaAcima (C1);
+	public static final float C3 = oitavaAcima (C2);
+	public static final float C4 = oitavaAcima (C3);
+	public static final float C5 = oitavaAcima (C4);
+
 	
 	
 	/**
@@ -139,7 +140,7 @@ public class IntervalosMusicais {
 	 * @return Oitava ascendente em relacao ao doBase
 	 */
 	public static float oitavaAcima (float doBase){
-		return (float)(doBase * 2f);
+		return (doBase * 2f);
 	}
 	
 	/**
@@ -149,9 +150,10 @@ public class IntervalosMusicais {
 	 * @return Oitava descendente em relacao ao doBase
 	 */
 	public static float oitavaAbaixo (float doBase){
-		return (float)(doBase * .5f);
+		return (doBase * .5f);
 	}
 
+	
 	
 	/**
 	 * Constroi a duracao da semibreve proporcional em relacao a
@@ -169,6 +171,15 @@ public class IntervalosMusicais {
 	 */
 	public static float minima (){
 		return 2f * Melodias.melodiaPrincipal.getSeminima();
+	}
+	
+	/**
+	 * Constroi a duracao da seminima proporcional em relacao a
+	 * seminima ja definida pela melodia
+	 * @return Valor da seminima ajustado
+	 */
+	public static float seminima (){
+		return Melodias.melodiaPrincipal.getSeminima();
 	}
 	
 	/**
