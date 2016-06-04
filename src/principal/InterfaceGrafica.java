@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -16,7 +18,6 @@ import java.awt.event.MouseListener;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -43,7 +44,7 @@ import javax.swing.event.DocumentListener;
  * @since	02/06/2016
  */
 public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemListener,
-											DocumentListener, MouseListener {
+											DocumentListener, MouseListener, FocusListener {
 	/**
 	 * Janela que sera abrigada a GUI criada, nas dimensões definidas
 	 */
@@ -74,8 +75,8 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 	/**
 	 * Opcoes do painel "Abrir"
 	 */
-	static JComboBox escolherMelodias		= null;
-	static JComboBox escolherInstrumentos	= null;
+	static JComboBox<Object> escolherMelodias		= null;
+	static JComboBox<Object> escolherInstrumentos	= null;
 	/**
 	 * Opcoes do painel "Configurar/Melodias"
 	 */
@@ -102,6 +103,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 	static JButton		salvarSom		= null;
 	static JButton		visualizarSom	= null;
 	static JButton		tocarSom		= null;
+	static JButton		pararSom		= null;
 	/**
 	 * Itens descartáveis, mas utilizados por muitos
 	 */
@@ -289,12 +291,13 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 		botaoAvulso.setToolTipText("Salvar do áudio gerado, no diretório atual");
 		painelAvulso.add (botaoAvulso);
 		painelAvulso.add (controleSalvar);
-		
 		painelSons.add(painelAvulso);
 		
 		nomeWave = criarTextField ("nomeWave", "nome do arquivo", false);
 		nomeWave.setForeground(new Color (128, 128, 128));
+		nomeWave.getDocument().addDocumentListener(this);
 		nomeWave.getDocument().putProperty("owner", nomeWave);
+		nomeWave.addFocusListener(this);
 		nomeWave.setVisible(false);
 		painelSons.add(nomeWave);
 		
@@ -302,8 +305,10 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 		salvarSom.setToolTipText("Efetuar registro do áudio em HD");
 		painelSons.add(salvarSom);
 		
-		tocarSom = criarBotao("tocar", "Tocar");
-		tocarSom.setToolTipText("Tocar o som formado");
+		painelAvulso = new JPanel ();
+		painelAvulso.setLayout(new BoxLayout(painelAvulso, BoxLayout.X_AXIS));
+		tocarSom = criarBotao("tocar", "Tocar musica inteira");
+		tocarSom.setToolTipText("Tocar o som formado, limitado: sem pausa");
 		painelSons.add(tocarSom);
 		
 		visualizarSom = criarBotao("visualizar", "Visualizar");
@@ -327,7 +332,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 								"Fuga 01, Arcela", "BWV 775, Invenção no. 14 dir.", "BWV 775, Invenção no. 4 esq.",
 								"BWV 988, variação goldberg_v03", "Duda no Frevo"};
 			
-			escolherMelodias = new JComboBox(melodias);
+			escolherMelodias = new JComboBox<Object>(melodias);
 			escolherMelodias.setToolTipText("Melodias disponíveis");
 			
 			escolherMelodias.setActionCommand("escolheMel");
@@ -353,7 +358,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 								"Marimba_i51", "Som puro", "Timbre quase Tonal",
 								"Timbre Ortogonal", "Trombone não Harmonico", "Trompete"};
 		
-		escolherInstrumentos = new JComboBox(instrumentos);
+		escolherInstrumentos = new JComboBox<Object>(instrumentos);
 		escolherInstrumentos.setToolTipText("Intrumentos disponíveis");
 		
 		escolherInstrumentos.setActionCommand("escolheInst");
@@ -555,7 +560,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 		Integer inteiro;
 		JLabel legenda;
 		
-		Hashtable labelTable = new Hashtable();
+		Hashtable<Object, Object> labelTable = new Hashtable<Object, Object>();
 		for (int vezes = 0; vezes < 5; vezes++){
 			valor = (maximo * (float)vezes / 4);
 			inteiro = new Integer((int)valor);
@@ -568,7 +573,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 				legenda = new JLabel(Integer.toString((int)valor));
 			}				
 			
-			labelTable.put(inteiro, legenda);
+			labelTable.put (inteiro, legenda);
 		}
 		
 		novo.setLabelTable( labelTable );
@@ -702,15 +707,12 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 			ControleComandos.escolherInstrumentos ();
 		
 		}else if ("salvar".equals(evento.getActionCommand())){
-			System.out.println("Salvando");
 			ControleComandos.salvarSom();
 		
 		}else if ("visualizar".equals(evento.getActionCommand())){
-			System.out.println("Visualizando");
 			ControleComandos.visualizarSom();
 		
 		}else if ("tocar".equals(evento.getActionCommand())){
-			System.out.println("Tocando");
 			ControleComandos.tocarSom();
 		}
 	}
@@ -811,6 +813,9 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 		}else if (fonte.equals(valorLambda)){
 			ControleComandos.configurarLambdaViaTexto();
 			
+		}else if (fonte.equals(nomeWave)){
+			ControleComandos.configurarNomeSom();
+			
 		}
 	}
 
@@ -850,5 +855,25 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 	 * de declarar
 	 */
 	public void mouseExited(MouseEvent e) {
+	}
+
+	/**
+	 * Dispensavel para este trabalho, mas obrigatorio
+	 * de declarar
+	 */
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Controle da configuracao do nome, apos clicar em 
+	 * qualquer outro componente
+	 * @param evento Evento registrado
+	 */
+	public void focusLost(FocusEvent evento) {
+		ControleComandos.editando = true;
+		ControleComandos.configurarNomeSom();
+		ControleComandos.editando = false;
 	}
 }

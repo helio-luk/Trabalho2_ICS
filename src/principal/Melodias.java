@@ -38,7 +38,7 @@ public class Melodias {
 		melodiaPrincipal.setSeminima (1);
 		
 		/*	Configuração do andamento */
-		melodiaPrincipal.setAndamento (0.5f);
+		//melodiaPrincipal.setAndamento (1f);
 	}
 	
 	/**
@@ -263,8 +263,7 @@ public class Melodias {
 		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 8);
 		melodiaPrincipal.addNota (nota);
-		
-		melodiaPrincipal.setAndamento(0.5f);
+
 		
 		return melodiaPrincipal;
 	}
@@ -391,7 +390,6 @@ public class Melodias {
 		nota = new Nota (IntervalosMusicais.minima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		melodiaPrincipal.setAndamento(0.5f);
 		
 		return melodiaPrincipal;
 	}
@@ -837,8 +835,6 @@ public class Melodias {
 		nota = new Nota (IntervalosMusicais.semibreve() + IntervalosMusicais.seminima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-
-		melodiaPrincipal.setAndamento(0.5f);
 
 		return melodiaPrincipal;
 	}

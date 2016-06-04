@@ -1,6 +1,5 @@
 package principal;
 
-import sintese.Curva;
 import sintese.Dispositivo;
 import sintese.Envoltoria;
 import sintese.Oscilador;
@@ -87,7 +86,7 @@ public class Instrumento2 extends Dispositivo {
         
         
         this.ruido = new Ruido(envoltoriaFreqRuido);   
-        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFrequencia (this.frequencia * this.fatorCorte);        
         this.ruido.setFase (this.fase); 
         this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();

@@ -111,7 +111,7 @@ public class Instrumento3 extends Dispositivo{
         this.envoltoriaFreqRuido.reset();        
         
         this.ruido = new Ruido(envoltoriaFreqRuido);   
-        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFrequencia (this.frequencia * this.fatorCorte);        
         this.ruido.setFase (this.fase); 
         this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();

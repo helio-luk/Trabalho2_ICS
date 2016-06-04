@@ -1,8 +1,12 @@
 /**	Pacote ao qual pertence */
 package principal;
 
+import sintese.BancoDeInstrumentos;
 /**	Importando Classes necessárias */
 import sintese.Curva;
+import sintese.Dispositivo;
+import sintese.Melodia;
+import sintese.Som;
 
 /** 
  * Constroi as condicoes basicas para a execucao do programa:<br>
@@ -40,6 +44,7 @@ public class Principal{
 	public static void main (String args[]){
 		//new Principal();
 		new InterfaceGrafica();
+		//teste ();
 		System.gc();
 	}
 	
@@ -80,5 +85,33 @@ public class Principal{
 		funcaoFrequenciaRuido = new Curva(720);
 		funcaoFrequenciaRuido.addPonto(0f, 200f);        
         funcaoFrequenciaRuido.addPonto(720f, 200f);
-	}	
+	}
+	
+	private static void teste(){
+		constroiFuncoes ();
+		//Instrumento1 inst = new Instrumento1();
+		Dispositivo inst = BancoDeInstrumentos.sompuro();
+		
+		/*
+		inst.setFatorCorte(1f);
+		inst.setFase(0f);
+		inst.setLambda(0.5);
+		//*/
+		inst.setGanho(1.5f);
+		
+		Melodia mel = Melodias.frozen();
+		
+		mel.setAndamento(0.5f);
+		mel.transposicao(1);
+		//mel.inversao();
+		
+		Som som = mel.getSom(inst);
+		
+		som.setNome("testando");
+		
+		som.salvawave();
+		//som.tocawave();
+		System.out.println("");
+			
+	}
 }

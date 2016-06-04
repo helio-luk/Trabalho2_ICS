@@ -3,6 +3,9 @@ package principal;
 
 import java.awt.Color;
 
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+
 import sintese.BancoDeInstrumentos;
 import sintese.Dispositivo;
 import sintese.Melodia;
@@ -23,13 +26,16 @@ public class ControleComandos {
 	 */
 	static Melodia melodiaEscolhida = null;
 	static Dispositivo instrumentoEscolhido = null;
+	static String nomeSomFormado = "sem_nome";
 	static Som somFormado = null;
 	/**
 	 * Controles internos
 	 */
+	private static boolean melodiaSelecionada = false;
+	private static boolean instrumentoSelecionado = false;
 	private static int aSelecionar = 2;
 	private static boolean invertida = false;
-	private static boolean editando = false;
+	static boolean editando = false;
 	private static boolean deslizando = false;
 	/**
 	 * Itens descartáveis, mas utilizados por muitos
@@ -91,6 +97,13 @@ public class ControleComandos {
 		
 		configurarInfosMelodias ();
 		
+		if (indiceEscolhido != 0 & !melodiaSelecionada)
+			melodiaSelecionada = true;
+		else if (indiceEscolhido != 0 & melodiaSelecionada)
+			indiceEscolhido = -1;
+		else if (indiceEscolhido == 0)
+			melodiaSelecionada = false;
+		
 		analisarVisualizar (indiceEscolhido);
 	}
 	
@@ -106,6 +119,7 @@ public class ControleComandos {
 		switch (indiceEscolhido){
 			case 0:
 				System.gc();
+				break;
 			case 1:
 				instrumentoEscolhido = new Instrumento1 ();
 				break;
@@ -140,7 +154,15 @@ public class ControleComandos {
 				instrumentoEscolhido = BancoDeInstrumentos.trompete01();
 		}
 		
+		
 		configurarInfosInstrumento ();
+		
+		if (indiceEscolhido != 0 & !instrumentoSelecionado)
+			instrumentoSelecionado = true;
+		else if (indiceEscolhido != 0 & instrumentoSelecionado)
+			indiceEscolhido = -1;
+		else if (indiceEscolhido == 0)
+			instrumentoSelecionado = false;
 		
 		analisarVisualizar (indiceEscolhido);
 	}
@@ -149,21 +171,26 @@ public class ControleComandos {
 	 * Salvar o som formado, com o nome
 	 */
 	public static void salvarSom (){
-		nome = InterfaceGrafica.nomeWave.getText();
-		
-		if (nome.equals("nome do arquivo"))
-			nome = "";
-		
 		formarSom();
-		somFormado.setNome (nome);
 		somFormado.salvawave ();
+	}
+	
+	/**
+	 * Configuracao do nome do som a ser salvo
+	 */
+	public static void configurarNomeSom (){
+		nomeSomFormado = InterfaceGrafica.nomeWave.getText();
+		
+		if (nomeSomFormado.equals("nome do arquivo")
+			|| nomeSomFormado.equals(""))
+			nomeSomFormado = "sem_nome";
 	}
 
 	/**
 	 * Tocar o som formado
 	 */
 	public static void tocarSom (){
-		formarSom();
+		salvarSom();
 		somFormado.tocawave();
 	}
 
@@ -172,6 +199,7 @@ public class ControleComandos {
 	 * fornecida, e possibilitar a acao de tocar o som formado
 	 */
 	public static void visualizarSom (){
+		formarSom();
 		somFormado.visualiza();
 	}
 
@@ -180,17 +208,14 @@ public class ControleComandos {
 	 */
 	public static void configurarAndamentoViaSlider (){
 		deslizando = true;
-		valorMaximo = InterfaceGrafica.controleAndamento.getMaximum();
-		valorCorrente = InterfaceGrafica.controleAndamento.getValue();
-		
-		razao = (float) Character.getNumericValue (Float.toString(valorMaximo).charAt(0));
-		razao *= ((float)valorCorrente / valorMaximo);
+		setRazaoViaSlider (InterfaceGrafica.controleAndamento);
 		
 		if (!editando)
 			InterfaceGrafica.valorAndamento.setText ("" + razao);
 		
 		if (melodiaEscolhida != null){
-			melodiaEscolhida.setAndamento(razao);
+			melodiaEscolhida.setAndamento (razao);
+			System.out.println("andamento foi para " + melodiaEscolhida.getAndamento());
 		}
 		
 		deslizando = false;
@@ -202,12 +227,14 @@ public class ControleComandos {
 	public static void configurarAndamentoViaTexto (){
 		if (!deslizando){
 			editando = true;
-			razao = Float.parseFloat(InterfaceGrafica.valorAndamento.getText());
+			
+			setRazaoViaTexto (InterfaceGrafica.valorAndamento);
 			
 			InterfaceGrafica.controleAndamento.setValue((int)(razao * 100));
 			
 			if (melodiaEscolhida != null){
 				melodiaEscolhida.setAndamento(razao);
+				System.out.println("andamento foi para " + melodiaEscolhida.getAndamento());
 			}
 			
 			editando = false;
@@ -219,12 +246,9 @@ public class ControleComandos {
 	 */
 	public static void configurarTransposicaoViaSlider (){
 		deslizando = true;
-		valorMaximo = InterfaceGrafica.controleTransposicao.getMaximum();
-		valorCorrente = InterfaceGrafica.controleTransposicao.getValue();
 		
-		razao = (float) Character.getNumericValue (Float.toString(valorMaximo).charAt(0));
-		razao *= ((float)valorCorrente / valorMaximo);
-		
+		setRazaoViaSlider (InterfaceGrafica.controleTransposicao);
+
 		if (!editando)
 			InterfaceGrafica.valorTransposicao.setText ("" + razao);
 		
@@ -241,8 +265,9 @@ public class ControleComandos {
 	public static void configurarTransposicaoViaTexto (){
 		if (!deslizando){
 			editando = true;
-			razao = Float.parseFloat(InterfaceGrafica.valorTransposicao.getText());
 			
+			setRazaoViaTexto (InterfaceGrafica.valorTransposicao);
+
 			InterfaceGrafica.controleTransposicao.setValue((int)(razao * 100));
 			
 			if (melodiaEscolhida != null){
@@ -258,12 +283,8 @@ public class ControleComandos {
 	 */
 	public static void configurarFatordeCorteViaSlider (){
 		deslizando = true;
-		valorMaximo = InterfaceGrafica.controleFatordeCorte.getMaximum();
-		valorCorrente = InterfaceGrafica.controleFatordeCorte.getValue();
 		
-		razao = (float) Character.getNumericValue (Float.toString(valorMaximo).charAt(0));
-		razao *= ((float)valorCorrente / valorMaximo);
-		
+		setRazaoViaSlider (InterfaceGrafica.controleFatordeCorte);
 		
 		if (!editando)
 			InterfaceGrafica.valorFatordeCorte.setText ("" + razao);
@@ -291,7 +312,8 @@ public class ControleComandos {
 	public static void configurarFatordeCorteViaTexto (){
 		if (!deslizando){
 			editando = true;
-			razao = Float.parseFloat(InterfaceGrafica.valorFatordeCorte.getText());
+			
+			setRazaoViaTexto (InterfaceGrafica.valorFatordeCorte);
 			
 			InterfaceGrafica.controleFatordeCorte.setValue((int)(razao * 10000));
 			
@@ -318,21 +340,22 @@ public class ControleComandos {
 	 */
 	public static void configurarFaseViaSlider (){
 		deslizando = true;
-		valorCorrente = InterfaceGrafica.controleFase.getValue();
+		
+		razao = InterfaceGrafica.controleFase.getValue();
 		
 		if (!editando)
-			InterfaceGrafica.valorFase.setText("" + valorCorrente);
+			InterfaceGrafica.valorFase.setText("" + razao);
 		
 		switch(verificaInstrumento()){
 			case 1:
-				((Instrumento1) instrumentoEscolhido).setFase (valorCorrente);
+				((Instrumento1) instrumentoEscolhido).setFase (razao);
 				break;
 			/*
 			case 2:
-				((Instrumento2) instrumentoEscolhido).setFase (valorCorrente);
+				((Instrumento2) instrumentoEscolhido).setFase (razao);
 				break;
 			case 3:
-				((Instrumento3) instrumentoEscolhido).setFase (valorCorrente);
+				((Instrumento3) instrumentoEscolhido).setFase (razao);
 				break;
 			//*/
 		}
@@ -346,9 +369,10 @@ public class ControleComandos {
 	public static void configurarFaseViaTexto (){
 		if (!deslizando){
 			editando = true;
-			razao = Float.parseFloat(InterfaceGrafica.valorFase.getText());
 			
-			InterfaceGrafica.controleFatordeCorte.setValue((int)(razao));
+			setRazaoViaTexto (InterfaceGrafica.valorFase);
+			
+			InterfaceGrafica.controleFase.setValue((int)(razao));
 			
 			switch(verificaInstrumento()){
 				case 1:
@@ -373,11 +397,8 @@ public class ControleComandos {
 	 */
 	public static void configurarLambdaViaSlider (){
 		deslizando = true;
-		valorMaximo = InterfaceGrafica.controleLambda.getMaximum();
-		valorCorrente = InterfaceGrafica.controleLambda.getValue();
 		
-		razao = (float) Character.getNumericValue(Float.toString(valorMaximo).charAt(0));
-		razao *= ((float)valorCorrente / valorMaximo);
+		setRazaoViaSlider (InterfaceGrafica.controleLambda);
 		
 		if (!editando)
 			InterfaceGrafica.valorLambda.setText("" + razao );
@@ -405,9 +426,10 @@ public class ControleComandos {
 	public static void configurarLambdaViaTexto (){
 		if (!deslizando){
 			editando = true;
-			razao = Float.parseFloat(InterfaceGrafica.valorLambda.getText());
 			
-			InterfaceGrafica.controleLambda.setValue((int)(razao));
+			setRazaoViaTexto (InterfaceGrafica.valorLambda);
+			
+			InterfaceGrafica.controleLambda.setValue((int)(razao * 100));
 			
 			switch(verificaInstrumento()){
 				case 1:
@@ -427,7 +449,6 @@ public class ControleComandos {
 		}
 	}
 	
-	
 	/**
 	 * Configuracoes relacionadas a inversao da melodia
 	 * @param acao Operacao realizada sobre a caixa de selecao,
@@ -440,13 +461,13 @@ public class ControleComandos {
 			melodiaEscolhida.inversao();
 	}
 	
-
 	/**
 	 * Configuracoes relacionadas ao habilitar salvar a melodia
 	 * @param acao Operacao realizada sobre a caixa de selecao,
 	 * marcando positiva ou negativamente
 	 */
 	public static void configurarSalvarSom (int acao){
+		editando = false;
 		if (acao == 0){
 			InterfaceGrafica.salvarSom.setEnabled(true);
 			InterfaceGrafica.nomeWave.setText("nome do arquivo");
@@ -459,19 +480,15 @@ public class ControleComandos {
 		}
 	}
 	
-	
 	/**
 	 * Configuracoes relacionadas ao ganho de amplitude no instrumento
 	 */
 	public static void configurarGanhoInstrumento (){
 		if (!editando){
-			System.out.println("tam -> " + InterfaceGrafica.valorGanhoInst.getText().length());
-			if (InterfaceGrafica.valorGanhoInst.getText().length() != 0)
-				razao = Float.parseFloat(InterfaceGrafica.valorGanhoInst.getText());
-			else
-				razao = 0;
+			//System.out.println("tam -> " + InterfaceGrafica.valorGanhoInst.getText().length());
 			
-			
+			setRazaoViaTexto (InterfaceGrafica.valorGanhoInst);
+						
 			//*
 			switch(verificaInstrumento()){
 				case 1:
@@ -489,7 +506,6 @@ public class ControleComandos {
 		}
 		//*/
 	}
-	
 
 	/**
 	 * Configuracoes relacionadas ao click do mouse sobre a caixa do
@@ -504,8 +520,7 @@ public class ControleComandos {
 		}
 	}
 	
-	
-	
+		
 	
 	
 	/**
@@ -514,9 +529,10 @@ public class ControleComandos {
 	 * @param indiceEscolhido	Melodia ou Instrumento escolhido
 	 */
 	public static void analisarVisualizar (int indiceEscolhido) {
-		if(indiceEscolhido != 0)
+		
+		if(indiceEscolhido > 0)
 			aSelecionar--;
-		else
+		else if (indiceEscolhido == 0)
 			aSelecionar++;
 		
 		if (aSelecionar == 0){
@@ -531,15 +547,58 @@ public class ControleComandos {
 		}
 	}
 
-
+	/**
+	 * Configuracao do valor a ser exibido na caixa de texto,
+	 * referente ao slider modificado
+	 * @param mestre Slider que sofreu alteracao de seu valor
+	 */
+	private static void setRazaoViaSlider (JSlider mestre) {
+		valorMaximo = mestre.getMaximum();
+		valorCorrente = mestre.getValue();
+		
+		razao = (float) Character.getNumericValue (Float.toString(valorMaximo).charAt(0));
+		razao *= ((float)valorCorrente / valorMaximo);
+	}
+	
+	/**
+	 * Configuracao do valor a ser configurado no slider,
+	 * referente a caixa de texto modificada
+	 * @param mestre Caixa de texto que sofreu alteracao
+	 */
+	private static void setRazaoViaTexto (JTextField mestre) {
+		if (mestre.getText().length() != 0)
+			razao = Float.parseFloat (mestre.getText());
+		else
+			razao = 0;
+	}
+	
 	/**
 	 * Configuracao do som formado com as manipulacoes
 	 */
 	private static void formarSom (){
-		somFormado = melodiaEscolhida.getSom(instrumentoEscolhido);
-		System.out.println("");
+		/*
+		if (melodiaEscolhida != null){
+			System.out.println ("tem melodia");
+			System.out.println("duracao " + melodiaEscolhida.getDuracao());
+		}else
+			System.out.println("melodia nula");
+		
+		if (instrumentoEscolhido != null)
+			System.out.println ("tem instrumento");
+		else
+			System.out.println("instrumento nula");
+		//*/
+		
+		somFormado = null;
+		if (!melodiaEscolhida.equals(null) & !instrumentoEscolhido.equals(null)){
+			somFormado = melodiaEscolhida.getSom(instrumentoEscolhido);
+		
+			configurarNomeSom();
+			somFormado.setNome(nomeSomFormado);
+			
+			System.out.println("");
+		}
 	}
-
 
 	/**
 	 * Configuracao dos parametros da interface em relacao a melodia escolhida
@@ -578,7 +637,7 @@ public class ControleComandos {
 					InterfaceGrafica.controleLambda.setValue((int)(razao * valorMaximo));
 					
 					editando = true;
-					razao = (float) ((Instrumento1) instrumentoEscolhido).getGanho();
+					razao = ((Instrumento1) instrumentoEscolhido).getGanho();
 					InterfaceGrafica.valorGanhoInst.setText("" + razao);
 					editando = false;
 					break;

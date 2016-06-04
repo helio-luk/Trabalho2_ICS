@@ -138,7 +138,7 @@ public class IntervalosMusicais {
 	 * @return Oitava ascendente em relacao ao doBase
 	 */
 	public static float oitavaAcima (float doBase){
-		return (float)(doBase * 2f);
+		return (doBase * 2f);
 	}
 	
 	/**
@@ -148,7 +148,7 @@ public class IntervalosMusicais {
 	 * @return Oitava descendente em relacao ao doBase
 	 */
 	public static float oitavaAbaixo (float doBase){
-		return (float)(doBase * .5f);
+		return (doBase * .5f);
 	}
 
 	

@@ -114,13 +114,13 @@ public class Instrumento1 extends Dispositivo{
         this.envoltoria.reset();
         
         this.ruido.setDispositivoAmplitude (this.envoltoria);        
-        this.ruido.setFrequencia ((float) this.frequencia * this.fatorCorte);        
+        this.ruido.setFrequencia (this.frequencia * this.fatorCorte);        
         this.ruido.setFase (this.fase);        
         this.ruido.setDuracao (this.duracao);        
         this.ruido.reset();
         
         this.oscilador.setDispositivoAmplitude (this.ruido);        
-        this.oscilador.setFrequencia ((float) this.frequencia);        
+        this.oscilador.setFrequencia (this.frequencia);        
         this.oscilador.setFase (this.fase);        
         this.oscilador.setDuracao (this.duracao);        
         this.oscilador.reset();                
