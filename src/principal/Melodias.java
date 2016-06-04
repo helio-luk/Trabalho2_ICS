@@ -16,33 +16,22 @@ import sintese.Nota;
 public class Melodias {
 	/**
 	 * Melodia a ser modificada, independente do tema criado
-	 */
-	static Melodia melodiaPrincipal;
-	/**
-	 * 	Nota a ser manipulada, a fim de construção da melodia
-	 */
-	static Nota nota;
-	/**
+	 * Nota a ser manipulada, a fim de construção da melodia
 	 * Frequencia a ser atribuída à nota durante a melodia
-	 */
-	static float frequencia;
-	/**
 	 * Amplitude padrao a ser utilizado pelas notas
-	 */
-	static final int amplitudePadrao = 15;
-	
-	/**
 	 * Construcao da melodia de maneira default
 	 */
+	
+	static Melodia melodiaPrincipal;	
+	static Nota nota;	
+	static float frequencia;	
+	static final int amplitudePadrao = 15;
+	
 	public Melodias (){
-		/*	Construção de uma melodia como vazia */
-		melodiaPrincipal = new Melodia ();
 		
-		/*	Configuração do valor da seminima */
-		melodiaPrincipal.setSeminima (1);
-		
-		/*	Configuração do andamento */
-		melodiaPrincipal.setAndamento (60);
+		melodiaPrincipal = new Melodia();		
+		melodiaPrincipal.setSeminima(1);	
+		melodiaPrincipal.setAndamento(60);
 	}
 	
 	/**
@@ -50,11 +39,241 @@ public class Melodias {
 	 * do filme Frozen - da Disney
 	 * @return A melodia correspondente a estes compassos
 	 */
-	public static Melodia frozen (){
-		/*	Construção default da melodia */
+	public static Melodia granada (){
+		
 		new Melodias();
 		
-		/* Refrão */
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Gsust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		nota = new Nota (IntervalosMusicais.semicolcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Gsust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		nota = new Nota (IntervalosMusicais.semicolcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+				
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		
+		
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		nota = new Nota (IntervalosMusicais.colcheia(), 0, 0);
+		melodiaPrincipal.addNota (nota);
+		
+		
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.Asust (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
+		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
+		melodiaPrincipal.addNota (nota);
+		
+		
+	
+		
+		
+		return melodiaPrincipal;
+	}
+	
+	public static Melodia frozen (){
+		
+		new Melodias();		
+		
 		frequencia = IntervalosMusicais.Dsust (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
@@ -178,23 +397,23 @@ public class Melodias {
 		
 		
 		
-		frequencia = IntervalosMusicais.D (IntervalosMusicais.C4);
+		frequencia = IntervalosMusicais.D (IntervalosMusicais.C5);
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.B (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.A (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.A (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.minima() + melodiaPrincipal.getSeminima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
@@ -202,69 +421,69 @@ public class Melodias {
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.B (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.A (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.A (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.minima() * 2, frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.Fsust (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.Fsust (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.D (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.D (IntervalosMusicais.C4);
 		nota = new Nota (melodiaPrincipal.getSeminima() + IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.D (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.D (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.minima() * 2, frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
 		nota = new Nota (IntervalosMusicais.colcheia(), 0, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		nota = new Nota (melodiaPrincipal.getSeminima(), IntervalosMusicais.C4, amplitudePadrao);
+		nota = new Nota (melodiaPrincipal.getSeminima(), IntervalosMusicais.C5, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
 		
-		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C4, amplitudePadrao - 1);
+		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C5, amplitudePadrao - 1);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.B (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 2);
 		melodiaPrincipal.addNota (nota);
 		
-		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C4, amplitudePadrao - 3);
+		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C5, amplitudePadrao - 3);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.B (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 4);
 		melodiaPrincipal.addNota (nota);
 		
-		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C4, amplitudePadrao - 5);
+		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C5, amplitudePadrao - 5);
 		melodiaPrincipal.addNota (nota);
 		
-		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C4, amplitudePadrao - 6);
+		nota = new Nota (IntervalosMusicais.colcheia(), IntervalosMusicais.C5, amplitudePadrao - 6);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.B (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 7);
 		melodiaPrincipal.addNota (nota);
 		
-		frequencia = IntervalosMusicais.G (IntervalosMusicais.C3);
+		frequencia = IntervalosMusicais.G (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao - 8);
 		melodiaPrincipal.addNota (nota);
 		
