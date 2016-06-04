@@ -121,13 +121,13 @@ public class ControleComandos {
 				System.gc();
 				break;
 			case 1:
-				instrumentoEscolhido = new Instrumento1 ();
+				instrumentoEscolhido = new IN1 ();
 				break;
 			case 2:
-				instrumentoEscolhido = new Instrumento2 ();
+				instrumentoEscolhido = new IN2 ();
 				break;
 			case 3:
-				instrumentoEscolhido = new Instrumento3 ();
+				instrumentoEscolhido = new IN3 ();
 				break;
 			case 4:
 				instrumentoEscolhido = BancoDeInstrumentos.flauta_nao_harmonica_tonal();
@@ -291,7 +291,7 @@ public class ControleComandos {
 		
 		switch(verificaInstrumento()){
 			case 1:
-				((Instrumento1) instrumentoEscolhido).setFatorCorte (razao);
+				((IN1) instrumentoEscolhido).setFatorCorte (razao);
 				break;
 			/*
 			case 2:
@@ -319,7 +319,7 @@ public class ControleComandos {
 			
 			switch(verificaInstrumento()){
 				case 1:
-					((Instrumento1) instrumentoEscolhido).setFatorCorte (razao);
+					((IN1) instrumentoEscolhido).setFatorCorte (razao);
 					break;
 				/*
 				case 2:
@@ -348,7 +348,7 @@ public class ControleComandos {
 		
 		switch(verificaInstrumento()){
 			case 1:
-				((Instrumento1) instrumentoEscolhido).setFase (razao);
+				((IN1) instrumentoEscolhido).setFase (razao);
 				break;
 			/*
 			case 2:
@@ -376,7 +376,7 @@ public class ControleComandos {
 			
 			switch(verificaInstrumento()){
 				case 1:
-					((Instrumento1) instrumentoEscolhido).setFase (razao);
+					((IN1) instrumentoEscolhido).setFase (razao);
 					break;
 				/*
 				case 2:
@@ -405,7 +405,7 @@ public class ControleComandos {
 		
 		switch(verificaInstrumento()){
 			case 1:
-				((Instrumento1) instrumentoEscolhido).setLambda (razao);
+				((IN1) instrumentoEscolhido).setLambda (razao);
 				break;
 			/*
 			case 2:
@@ -433,7 +433,7 @@ public class ControleComandos {
 			
 			switch(verificaInstrumento()){
 				case 1:
-					((Instrumento1) instrumentoEscolhido).setLambda (razao);
+					((IN1) instrumentoEscolhido).setLambda (razao);
 					break;
 				/*
 				case 2:
@@ -492,13 +492,13 @@ public class ControleComandos {
 			//*
 			switch(verificaInstrumento()){
 				case 1:
-					((Instrumento1) instrumentoEscolhido).setGanho (razao);
+					((IN1) instrumentoEscolhido).setGanho (razao);
 					break;
 				case 2:
-					((Instrumento2) instrumentoEscolhido).setGanho (razao);
+					((IN2) instrumentoEscolhido).setGanho (razao);
 					break;
 				case 3:
-					((Instrumento3) instrumentoEscolhido).setGanho (razao);
+					((IN3) instrumentoEscolhido).setGanho (razao);
 					break;
 				case 4:
 					instrumentoEscolhido.setGanho(razao);
@@ -625,19 +625,19 @@ public class ControleComandos {
 			switch(verificaInstrumento()){
 				case 1:
 					valorMaximo = InterfaceGrafica.controleFatordeCorte.getMaximum();
-					razao = ((Instrumento1) instrumentoEscolhido).getFatorCorte ();
+					razao = ((IN1) instrumentoEscolhido).getFatorCorte ();
 					InterfaceGrafica.controleFatordeCorte.setValue((int)(razao * valorMaximo));
 					
 					valorMaximo = InterfaceGrafica.controleFase.getMaximum();
-					razao = ((Instrumento1) instrumentoEscolhido).getFase();
+					razao = ((IN1) instrumentoEscolhido).getFase();
 					InterfaceGrafica.controleFase.setValue((int)(razao * valorMaximo));
 					
 					valorMaximo = InterfaceGrafica.controleLambda.getMaximum();
-					razao = (float) ((Instrumento1) instrumentoEscolhido).getLambda();
+					razao = (float) ((IN1) instrumentoEscolhido).getLambda();
 					InterfaceGrafica.controleLambda.setValue((int)(razao * valorMaximo));
 					
 					editando = true;
-					razao = ((Instrumento1) instrumentoEscolhido).getGanho();
+					razao = ((IN1) instrumentoEscolhido).getGanho();
 					InterfaceGrafica.valorGanhoInst.setText("" + razao);
 					editando = false;
 					break;
@@ -666,11 +666,11 @@ public class ControleComandos {
 	 */
 	private static int verificaInstrumento (){
 		if (instrumentoEscolhido != null){
-			if (instrumentoEscolhido.getClass().equals(Instrumento1.class))
+			if (instrumentoEscolhido.getClass().equals(IN1.class))
 				return 1;
-			else if (instrumentoEscolhido.getClass().equals(Instrumento2.class))
+			else if (instrumentoEscolhido.getClass().equals(IN2.class))
 				return 2;
-			else if (instrumentoEscolhido.getClass().equals(Instrumento3.class))
+			else if (instrumentoEscolhido.getClass().equals(IN3.class))
 				return 3;
 			else
 				return 4;

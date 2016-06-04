@@ -2,7 +2,6 @@ package principal;
 
 import sintese.Curva;
 import sintese.Envoltoria;
-import sintese.Oscilador;
 import sintese.Ruido;
 
 public class IN1 extends Instrumento {

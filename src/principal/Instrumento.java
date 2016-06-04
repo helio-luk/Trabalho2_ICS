@@ -110,5 +110,21 @@ public abstract class Instrumento extends Dispositivo {
         return funcaoFrequenciaRuido;
 	}
 	
+	public void setFatorCorte(float fc){
+		this.fatorCorte = fc;
+	}
+	
+	public float getFatorCorte(){
+		return this.fatorCorte;
+	}
+	
+	public float getFase(){
+		return this.fase;
+	}
+	
+	public float getLambda(){
+		return this.lambda;
+	}
+	
 	public abstract void reset();
 }
