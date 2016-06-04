@@ -43,8 +43,8 @@ public class Principal{
 
 	
 	private void tocaFrozen (){
-		IN3 inst;
-		inst = new IN3(0.00000001f);
+		IN2 inst;
+		inst = new IN2(0.00000001f);
 		
 		//Instrumento2 inst;
 		//inst  = new Instrumento2 (1);			//---instrumento atonal
