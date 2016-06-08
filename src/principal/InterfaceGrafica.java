@@ -327,7 +327,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 			botaoAvulso.setToolTipText("Melodias disponíveis");
 			painelAvulso.add(botaoAvulso);
 			
-			String melodias[] = {"","Frozen", "Game of Thrones", "The Rains of Castamere",
+			String melodias[] = {"", "Granada" ,"Frozen", "Game of Thrones", "The Rains of Castamere",
 								"Melodia Sexta1", "Sonata de Scarlatti", "Drawing Quintet Flauta",
 								"Fuga 01, Arcela", "BWV 775, Invenção no. 14 dir.", "BWV 775, Invenção no. 4 esq.",
 								"BWV 988, variação goldberg_v03", "Duda no Frevo"};
@@ -723,7 +723,7 @@ public class InterfaceGrafica implements	ActionListener, ChangeListener, ItemLis
 	 * @param fonte Fonte da acao
 	 */
 	public void stateChanged(ChangeEvent fonte) {
-		Object origem = fonte.getSource(); 
+		JSlider origem = (JSlider) fonte.getSource(); 
 		
 		if (origem.equals(controleAndamento)){
 			ControleComandos.configurarAndamentoViaSlider ();
