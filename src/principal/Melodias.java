@@ -37,8 +37,8 @@ public class Melodias {
 		
 
 		melodiaPrincipal = new Melodia();		
-		melodiaPrincipal.setSeminima(1);	
-//		melodiaPrincipal.setAndamento(60);
+		melodiaPrincipal.setSeminima (1);	
+		melodiaPrincipal.setAndamento (0.62f);
 
 	}
 	
@@ -270,9 +270,6 @@ public class Melodias {
 		frequencia = IntervalosMusicais.B (IntervalosMusicais.C4);
 		nota = new Nota (IntervalosMusicais.colcheia(), frequencia, amplitudePadrao);
 		melodiaPrincipal.addNota (nota);
-		
-		
-	
 		
 		
 		return melodiaPrincipal;

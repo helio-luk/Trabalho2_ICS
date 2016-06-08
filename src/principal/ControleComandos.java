@@ -213,10 +213,11 @@ public class ControleComandos {
 		if (!editando)
 			InterfaceGrafica.valorAndamento.setText ("" + razao);
 		
-		if (melodiaEscolhida != null){
-			melodiaEscolhida.setAndamento (razao);
-			System.out.println("andamento foi para " + melodiaEscolhida.getAndamento());
-		}
+		if (!InterfaceGrafica.controleAndamento.getValueIsAdjusting()
+			& melodiaEscolhida != null){
+				melodiaEscolhida.setAndamento (razao);
+				System.out.println("Andamento foi para " + melodiaEscolhida.getAndamento());
+			}
 		
 		deslizando = false;
 	}
@@ -234,7 +235,7 @@ public class ControleComandos {
 			
 			if (melodiaEscolhida != null){
 				melodiaEscolhida.setAndamento(razao);
-				System.out.println("andamento foi para " + melodiaEscolhida.getAndamento());
+				System.out.println("Andamento foi para " + melodiaEscolhida.getAndamento());
 			}
 			
 			editando = false;
@@ -252,8 +253,10 @@ public class ControleComandos {
 		if (!editando)
 			InterfaceGrafica.valorTransposicao.setText ("" + razao);
 		
-		if (melodiaEscolhida != null){
+		if (!InterfaceGrafica.controleTransposicao.getValueIsAdjusting()
+			& melodiaEscolhida != null){
 			melodiaEscolhida.transposicao(razao);
+			System.out.println("A melodia foi transposta de " + razao);
 		}
 		
 		deslizando = false;
@@ -272,6 +275,7 @@ public class ControleComandos {
 			
 			if (melodiaEscolhida != null){
 				melodiaEscolhida.transposicao (razao);
+				System.out.println("A melodia foi transposta de " + razao);
 			}
 			
 			editando = false;
@@ -289,18 +293,21 @@ public class ControleComandos {
 		if (!editando)
 			InterfaceGrafica.valorFatordeCorte.setText ("" + razao);
 		
-		switch(verificaInstrumento()){
-			case 1:
-				((IN1) instrumentoEscolhido).setFatorCorte (razao);
-				break;
-			/*
-			case 2:
-				((Instrumento2) instrumentoEscolhido).setFatorCorte (razao);
-				break;
-			case 3:
-				((Instrumento3) instrumentoEscolhido).setFatorCorte (razao);
-				break;
-			//*/
+		if (!InterfaceGrafica.controleFatordeCorte.getValueIsAdjusting()){
+			switch(verificaInstrumento()){
+				case 1:
+					((IN1) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
+					break;
+				case 2:
+					((IN2) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
+					break;
+				case 3:
+					((IN3) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
+					break;
+			}
 		}
 		
 		deslizando = false;
@@ -320,15 +327,16 @@ public class ControleComandos {
 			switch(verificaInstrumento()){
 				case 1:
 					((IN1) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
 					break;
-				/*
 				case 2:
-					((Instrumento2) instrumentoEscolhido).setFatorCorte (razao);
+					((IN2) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
 					break;
 				case 3:
-					((Instrumento3) instrumentoEscolhido).setFatorCorte (razao);
+					((IN3) instrumentoEscolhido).setFatorCorte (razao);
+					System.out.println("Fator de corte foi para " + razao);
 					break;
-				//*/
 			}
 			
 			editando = false;
@@ -346,18 +354,21 @@ public class ControleComandos {
 		if (!editando)
 			InterfaceGrafica.valorFase.setText("" + razao);
 		
-		switch(verificaInstrumento()){
-			case 1:
-				((IN1) instrumentoEscolhido).setFase (razao);
-				break;
-			/*
-			case 2:
-				((Instrumento2) instrumentoEscolhido).setFase (razao);
-				break;
-			case 3:
-				((Instrumento3) instrumentoEscolhido).setFase (razao);
-				break;
-			//*/
+		if (!InterfaceGrafica.controleFase.getValueIsAdjusting()){
+			switch(verificaInstrumento()){
+				case 1:
+					((IN1) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
+					break;
+				case 2:
+					((IN2) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
+					break;
+				case 3:
+					((IN3) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
+					break;
+			}
 		}
 		
 		deslizando = false;
@@ -377,15 +388,16 @@ public class ControleComandos {
 			switch(verificaInstrumento()){
 				case 1:
 					((IN1) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
 					break;
-				/*
 				case 2:
-					((Instrumento2) instrumentoEscolhido).setFase (razao);
+					((IN2) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
 					break;
 				case 3:
-					((Instrumento3) instrumentoEscolhido).setFase (razao);
+					((IN3) instrumentoEscolhido).setFase (razao);
+					System.out.println("Fase foi para " + razao);
 					break;
-				//*/
 			}
 			
 			editando = false;
@@ -403,18 +415,21 @@ public class ControleComandos {
 		if (!editando)
 			InterfaceGrafica.valorLambda.setText("" + razao );
 		
-		switch(verificaInstrumento()){
-			case 1:
-				((IN1) instrumentoEscolhido).setLambda (razao);
-				break;
-			/*
-			case 2:
-				((Instrumento2) instrumentoEscolhido).setLambda (razao);
-				break;
-			case 3:
-				((Instrumento3) instrumentoEscolhido).setLambda (razao);
-				break;
-			//*/
+		if (!InterfaceGrafica.controleLambda.getValueIsAdjusting()){
+			switch(verificaInstrumento()){
+				case 1:
+					((IN1) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
+					break;
+				case 2:
+					((IN2) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
+					break;
+				case 3:
+					((IN3) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
+					break;
+			}
 		}
 		
 		deslizando = false;
@@ -434,15 +449,16 @@ public class ControleComandos {
 			switch(verificaInstrumento()){
 				case 1:
 					((IN1) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
 					break;
-				/*
 				case 2:
-					((Instrumento2) instrumentoEscolhido).setLambda (razao);
+					((IN2) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
 					break;
 				case 3:
-					((Instrumento3) instrumentoEscolhido).setLambda (razao);
+					((IN3) instrumentoEscolhido).setLambda (razao);
+					System.out.println("Esteriofonia na esquerda foi para " + razao);
 					break;
-				//*/
 			}
 			
 			editando = false;
@@ -455,10 +471,16 @@ public class ControleComandos {
 	 * marcando positiva ou negativamente
 	 */
 	public static void configurarInversaoMelodia (int acao){
-		if (acao == 0 & !invertida)
+		if (acao == 0 & !invertida){
 			melodiaEscolhida.inversao();
-		else if (acao == 1 & invertida)
+			invertida = true;
+			System.out.println("A melodia foi invertida");
+			
+		}else if (acao == 1 & invertida){
 			melodiaEscolhida.inversao();
+			invertida = false;
+			System.out.println("A melodia voltou ao sentido normal");
+		}
 	}
 	
 	/**
@@ -493,15 +515,20 @@ public class ControleComandos {
 			switch(verificaInstrumento()){
 				case 1:
 					((IN1) instrumentoEscolhido).setGanho (razao);
+					System.out.println("Foi feito um ganho de " + razao + " no instrumento");
 					break;
 				case 2:
 					((IN2) instrumentoEscolhido).setGanho (razao);
+					System.out.println("Foi feito um ganho de " + razao + " no instrumento");
 					break;
 				case 3:
 					((IN3) instrumentoEscolhido).setGanho (razao);
+					System.out.println("Foi feito um ganho de " + razao + " no instrumento");
 					break;
 				case 4:
 					instrumentoEscolhido.setGanho(razao);
+					System.out.println("Foi feito um ganho de " + razao + " no instrumento");
+					break;
 			}
 		}
 		//*/
@@ -576,20 +603,9 @@ public class ControleComandos {
 	 * Configuracao do som formado com as manipulacoes
 	 */
 	private static void formarSom (){
-		/*
-		if (melodiaEscolhida != null){
-			System.out.println ("tem melodia");
-			System.out.println("duracao " + melodiaEscolhida.getDuracao());
-		}else
-			System.out.println("melodia nula");
-		
-		if (instrumentoEscolhido != null)
-			System.out.println ("tem instrumento");
-		else
-			System.out.println("instrumento nula");
-		//*/
-		
 		somFormado = null;
+		System.gc();
+		
 		if (!melodiaEscolhida.equals(null) & !instrumentoEscolhido.equals(null)){
 			somFormado = melodiaEscolhida.getSom(instrumentoEscolhido);
 		
@@ -633,7 +649,7 @@ public class ControleComandos {
 					InterfaceGrafica.controleFase.setValue((int)(razao * valorMaximo));
 					
 					valorMaximo = InterfaceGrafica.controleLambda.getMaximum();
-					razao = (float) ((IN1) instrumentoEscolhido).getLambda();
+					razao = ((IN1) instrumentoEscolhido).getLambda();
 					InterfaceGrafica.controleLambda.setValue((int)(razao * valorMaximo));
 					
 					editando = true;
@@ -641,18 +657,42 @@ public class ControleComandos {
 					InterfaceGrafica.valorGanhoInst.setText("" + razao);
 					editando = false;
 					break;
-				/*
 				case 2:
 					valorMaximo = InterfaceGrafica.controleFatordeCorte.getMaximum();
-					razao = ((Instrumento2) instrumentoEscolhido).getFatorCorte ();
+					razao = ((IN2) instrumentoEscolhido).getFatorCorte ();
 					InterfaceGrafica.controleFatordeCorte.setValue((int)(razao * valorMaximo));
+					
+					valorMaximo = InterfaceGrafica.controleFase.getMaximum();
+					razao = ((IN2) instrumentoEscolhido).getFase();
+					InterfaceGrafica.controleFase.setValue((int)(razao * valorMaximo));
+					
+					valorMaximo = InterfaceGrafica.controleLambda.getMaximum();
+					razao = ((IN2) instrumentoEscolhido).getLambda();
+					InterfaceGrafica.controleLambda.setValue((int)(razao * valorMaximo));
+					
+					editando = true;
+					razao = ((IN2) instrumentoEscolhido).getGanho();
+					InterfaceGrafica.valorGanhoInst.setText("" + razao);
+					editando = false;
 					break;
 				case 3:
 					valorMaximo = InterfaceGrafica.controleFatordeCorte.getMaximum();
-					razao = ((Instrumento2) instrumentoEscolhido).getFatorCorte ();
+					razao = ((IN3) instrumentoEscolhido).getFatorCorte ();
 					InterfaceGrafica.controleFatordeCorte.setValue((int)(razao * valorMaximo));
+					
+					valorMaximo = InterfaceGrafica.controleFase.getMaximum();
+					razao = ((IN3) instrumentoEscolhido).getFase();
+					InterfaceGrafica.controleFase.setValue((int)(razao * valorMaximo));
+					
+					valorMaximo = InterfaceGrafica.controleLambda.getMaximum();
+					razao = ((IN3) instrumentoEscolhido).getLambda();
+					InterfaceGrafica.controleLambda.setValue((int)(razao * valorMaximo));
+					
+					editando = true;
+					razao = ((IN3) instrumentoEscolhido).getGanho();
+					InterfaceGrafica.valorGanhoInst.setText("" + razao);
+					editando = false;
 					break;
-				//*/
 			}
 			
 			configurarFatordeCorteViaSlider();

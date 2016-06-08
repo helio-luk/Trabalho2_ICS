@@ -25,8 +25,8 @@ public abstract class Instrumento extends Dispositivo {
 		this.envoltoria = new Envoltoria();		
 		this.ruido = new Ruido();	
 		this.oscilador = new Oscilador();		
-		this.setRelogio(0);	
-		this.fatorCorte = 1;		
+		this.setRelogio (0);	
+		this.fatorCorte = 0.0001f;		
 		this.setLambda (0.5f);		
 		this.setFase (0f);
 	}
